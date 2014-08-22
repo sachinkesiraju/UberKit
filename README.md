@@ -52,7 +52,7 @@ To get the price for a trip between two locations
          NSLog(@"Error %@", error);
      }];
 ```
-For more help, check out the demo project <a href = https://github.com/sachinkesiraju/UberKit/tree/master/UberKitDemo> Demo </a>!
+For more help, check out the <a href = https://github.com/sachinkesiraju/UberKit/tree/master/UberKitDemo> Demo </a>!
 
 <h2> License </h2>
 
