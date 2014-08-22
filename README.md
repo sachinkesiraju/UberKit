@@ -19,9 +19,9 @@ To implement UberKit, first initialize it
 To get all products available from a particular location
 
 ```
- [uberKit getProductsForLocationWithLatitude:LAT longitude:LONG success:^(UberProduct *product)
+ [uberKit getProductsForLocationWithLatitude:START_LAT longitude:START_LONG success:^(NSArray *products)
      {
-         NSLog(@"Product %@", product);
+        //Got the array of available products
      }
     failure:^(NSError *error, NSHTTPURLResponse *response)
      {
@@ -31,9 +31,9 @@ To get all products available from a particular location
 
 To get the time for arrival of a product to a particular location
 ```
-[uberKit getTimeForProductArrivalWithStartLatitude:LAT startLongitude:LONG success:^(UberTime *time)
+[uberKit getTimeForProductArrivalWithStartLatitude:START_LAT startLongitude:START_LONG success:^(NSArray *times)
      {
-         NSLog(@"Time %f", time);
+        //Got the array of available products and the time they'll take to reach the coordinates
      }
     failure:^(NSError *error, NSHTTPURLResponse *response)
      {
@@ -43,15 +43,16 @@ To get the time for arrival of a product to a particular location
 
 To get the price for a trip between two locations
 ```
-[uberKit getPriceForTripWithStartLatitude:START_LAT startLongitude:START_LONG endLatitude:END_LAT endLongitude:END_LONG success:^(UberPrice *price)
+[uberKit getPriceForTripWithStartLatitude:START_LAT startLongitude:START_LONG endLatitude:END_LAT endLongitude:END_LONG success:^(NSArray *prices)
      {
-         NSLog(@"Price %@", price);
+        //Got the array of available products and the price it will take to ride from the start point to the end point
      }
     failure:^(NSError *error, NSHTTPURLResponse *response)
      {
          NSLog(@"Error %@", error);
      }];
 ```
+For more help, check out the demo project <a href = https://github.com/sachinkesiraju/UberKit/tree/master/UberKitDemo> Demo </a>!
 
 <h2> License </h2>
 
