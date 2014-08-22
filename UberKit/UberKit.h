@@ -37,17 +37,17 @@ typedef void (^FailureHandler) (NSError *error, NSHTTPURLResponse *response);
 #pragma mark - Product Types
 
 - (void) getProductsForLocationWithLatitude: (float) latitude longitude: (float) longitude
-                                    success:(void (^) (UberProduct *))success
+                                    success:(SuccessHandler)success
                                     failure:(FailureHandler)failure;
 #pragma mark - Price Estimates
 
 - (void) getPriceForTripWithStartLatitude: (float) startLatitude startLongitude: (float) startLongitude endLatitude: (float) endLatitude endLongitude: (float) endLongitude
-                                  success:(void (^) (UberPrice *))success
+                                  success:(SuccessHandler)success
                                   failure:(FailureHandler)failure;
 #pragma mark - Time Estimates
 
 - (void) getTimeForProductArrivalWithStartLatitude: (float) startLatitude startLongitude: (float) startLongitude
-                                           success:(void (^) (UberTime *))success
+                                           success:(SuccessHandler)success
                                            failure:(FailureHandler)failure;
 
 #pragma mark - Deep Linking

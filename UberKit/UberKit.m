@@ -26,7 +26,7 @@
 #import "UberKit.h"
 
 static const NSString *baseURL = @"https://api.uber.com";
-static const NSString *serverToken = @"YOUR_SERVER_TOKEN"; //Add your server token
+static const NSString *serverToken = @"ORVImzShT1gIsICD30hQ1p4S2jPIH0UzhmDvmpA5"; //Add your server token
 
 @interface UberKit (Private)
 
@@ -39,16 +39,22 @@ static const NSString *serverToken = @"YOUR_SERVER_TOKEN"; //Add your server tok
 
 #pragma mark - Product Types 
 
-- (void) getProductsForLocationWithLatitude:(float)latitude longitude:(float)longitude success:(void (^)(UberProduct *))success failure:(FailureHandler)failure
+- (void) getProductsForLocationWithLatitude:(float)latitude longitude:(float)longitude success:(SuccessHandler)success failure:(FailureHandler)failure
 {
     // GET/v1/products
     
     NSString *url = [NSString stringWithFormat:@"%@/v1/products?server_token=%@&latitude=%f&longitude=%f", baseURL, serverToken, latitude, longitude];
     [self performNetworkOperationWithURL:url success:^(NSDictionary *results)
      {
-         NSLog(@"Result %@", results);
-         UberProduct *product = [[UberProduct alloc] initWithDictionary:results];
-         success(product);
+         NSArray *products = [results objectForKey:@"products"];
+         NSMutableArray *availableProducts = [[NSMutableArray alloc] init];
+         for(int i=0; i<products.count; i++)
+         {
+             UberProduct *product = [[UberProduct alloc] initWithDictionary:[products objectAtIndex:i]];
+             NSLog(@"Product %@", product);
+             [availableProducts addObject:product];
+         }
+         success(availableProducts);
      }
      failure:^(NSError *error, NSHTTPURLResponse *response)
      {
@@ -58,15 +64,21 @@ static const NSString *serverToken = @"YOUR_SERVER_TOKEN"; //Add your server tok
 
 #pragma mark - Price Estimates
 
-- (void) getPriceForTripWithStartLatitude:(float)startLatitude startLongitude:(float)startLongitude endLatitude:(float)endLatitude endLongitude:(float)endLongitude success:(void (^)(UberPrice *))success failure:(FailureHandler)failure
+- (void) getPriceForTripWithStartLatitude:(float)startLatitude startLongitude:(float)startLongitude endLatitude:(float)endLatitude endLongitude:(float)endLongitude success:(SuccessHandler)success failure:(FailureHandler)failure
 {
     // GET /v1/estimates/price
     
     NSString *url = [NSString stringWithFormat:@"%@/v1/estimates/price?server_token=%@&start_latitude=%f&start_longitude=%f&end_latitude=%f&end_longitude=%f", baseURL, serverToken, startLatitude, startLongitude, endLatitude, endLongitude];
     [self performNetworkOperationWithURL:url success:^(NSDictionary *results)
      {
-         UberPrice *price = [[UberPrice alloc] initWithDictionary:results];
-         success(price);
+         NSArray *prices = [results objectForKey:@"prices"];
+         NSMutableArray *availablePrices = [[NSMutableArray alloc] init];
+         for(int i=0; i<prices.count; i++)
+         {
+             UberPrice *price = [[UberPrice alloc] initWithDictionary:[prices objectAtIndex:i]];
+             [availablePrices addObject:price];
+         }
+         success(availablePrices);
      }
     failure:^(NSError *error, NSHTTPURLResponse *response)
      {
@@ -76,15 +88,21 @@ static const NSString *serverToken = @"YOUR_SERVER_TOKEN"; //Add your server tok
 
 #pragma mark - Time Estimates
 
-- (void) getTimeForProductArrivalWithStartLatitude:(float)startLatitude startLongitude:(float)startLongitude success:(void (^)(UberTime *))success failure:(FailureHandler)failure
+- (void) getTimeForProductArrivalWithStartLatitude:(float)startLatitude startLongitude:(float)startLongitude success:(SuccessHandler)success failure:(FailureHandler)failure
 {
     //GET /v1/estimates/time
     
     NSString *url = [NSString stringWithFormat:@"%@/v1/estimates/time?server_token=%@&start_latitude=%f&start_longitude=%f", baseURL, serverToken, startLatitude, startLongitude];
     [self performNetworkOperationWithURL:url success:^(NSDictionary *results)
      {
-         UberTime *time = [[UberTime alloc] initWithDictionary:results];
-         success(time);
+         NSArray *times = [results objectForKey:@"times"];
+         NSMutableArray *availableTimes = [[NSMutableArray alloc] init];
+         for(int i=0; i<times.count; i++)
+         {
+             UberTime *time = [[UberTime alloc] initWithDictionary:[times objectAtIndex:i]];
+             [availableTimes addObject:time];
+         }
+         success(availableTimes);
          
      }
     failure:^(NSError *error, NSHTTPURLResponse *response)
@@ -113,12 +131,13 @@ static const NSString *serverToken = @"YOUR_SERVER_TOKEN"; //Add your server tok
 
 - (void) performNetworkOperationWithURL:(NSString *)url success:(void (^)(NSDictionary *))success failure:(void (^)(NSError *, NSHTTPURLResponse *))failure
 {
+    NSLog(@"Url %@", url);
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
     
     [[session dataTaskWithURL:[NSURL URLWithString:url] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (error == nil) {
-            
+
             NSError *jsonError = nil;
             NSDictionary *serializedResults = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
             
@@ -133,7 +152,6 @@ static const NSString *serverToken = @"YOUR_SERVER_TOKEN"; //Add your server tok
             
             NSHTTPURLResponse *convertedResponse = (NSHTTPURLResponse *)response;
             failure(error, convertedResponse);
-            
         }
     }] resume];
 }
