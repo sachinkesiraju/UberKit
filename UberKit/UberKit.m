@@ -26,7 +26,7 @@
 #import "UberKit.h"
 
 static const NSString *baseURL = @"https://api.uber.com";
-static const NSString *serverToken = @"ORVImzShT1gIsICD30hQ1p4S2jPIH0UzhmDvmpA5"; //Add your server token
+static const NSString *serverToken = @"ADD_YOUR_SERVER_TOKEN"; //Add your server token
 
 @interface UberKit (Private)
 
