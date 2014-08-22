@@ -1,0 +1,512 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		038FC3B919A62A6F004CB198 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 038FC3B819A62A6F004CB198 /* Foundation.framework */; };
+		038FC3BB19A62A6F004CB198 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 038FC3BA19A62A6F004CB198 /* CoreGraphics.framework */; };
+		038FC3BD19A62A6F004CB198 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 038FC3BC19A62A6F004CB198 /* UIKit.framework */; };
+		038FC3C319A62A6F004CB198 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 038FC3C119A62A6F004CB198 /* InfoPlist.strings */; };
+		038FC3C519A62A6F004CB198 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 038FC3C419A62A6F004CB198 /* main.m */; };
+		038FC3C919A62A6F004CB198 /* UberKitDemoAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 038FC3C819A62A6F004CB198 /* UberKitDemoAppDelegate.m */; };
+		038FC3CC19A62A6F004CB198 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 038FC3CA19A62A6F004CB198 /* Main.storyboard */; };
+		038FC3D119A62A6F004CB198 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 038FC3D019A62A6F004CB198 /* Images.xcassets */; };
+		038FC3D819A62A6F004CB198 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 038FC3D719A62A6F004CB198 /* XCTest.framework */; };
+		038FC3D919A62A6F004CB198 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 038FC3B819A62A6F004CB198 /* Foundation.framework */; };
+		038FC3DA19A62A6F004CB198 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 038FC3BC19A62A6F004CB198 /* UIKit.framework */; };
+		038FC3E219A62A70004CB198 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 038FC3E019A62A70004CB198 /* InfoPlist.strings */; };
+		038FC3E419A62A70004CB198 /* UberKitDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 038FC3E319A62A70004CB198 /* UberKitDemoTests.m */; };
+		038FC3EF19A62A8E004CB198 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 038FC3EE19A62A8E004CB198 /* ViewController.m */; };
+		038FC3FA19A62B23004CB198 /* UberPrice.m in Sources */ = {isa = PBXBuildFile; fileRef = 038FC3F319A62B23004CB198 /* UberPrice.m */; };
+		038FC3FB19A62B23004CB198 /* UberProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = 038FC3F519A62B23004CB198 /* UberProduct.m */; };
+		038FC3FC19A62B23004CB198 /* UberTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 038FC3F719A62B23004CB198 /* UberTime.m */; };
+		038FC3FD19A62B23004CB198 /* UberKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 038FC3F919A62B23004CB198 /* UberKit.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		038FC3DB19A62A70004CB198 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 038FC3AD19A62A6F004CB198 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 038FC3B419A62A6F004CB198;
+			remoteInfo = UberKitDemo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		038FC3B519A62A6F004CB198 /* UberKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UberKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		038FC3B819A62A6F004CB198 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		038FC3BA19A62A6F004CB198 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		038FC3BC19A62A6F004CB198 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		038FC3C019A62A6F004CB198 /* UberKitDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UberKitDemo-Info.plist"; sourceTree = "<group>"; };
+		038FC3C219A62A6F004CB198 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		038FC3C419A62A6F004CB198 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		038FC3C619A62A6F004CB198 /* UberKitDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UberKitDemo-Prefix.pch"; sourceTree = "<group>"; };
+		038FC3C719A62A6F004CB198 /* UberKitDemoAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UberKitDemoAppDelegate.h; sourceTree = "<group>"; };
+		038FC3C819A62A6F004CB198 /* UberKitDemoAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UberKitDemoAppDelegate.m; sourceTree = "<group>"; };
+		038FC3CB19A62A6F004CB198 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		038FC3D019A62A6F004CB198 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		038FC3D619A62A6F004CB198 /* UberKitDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UberKitDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		038FC3D719A62A6F004CB198 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		038FC3DF19A62A70004CB198 /* UberKitDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UberKitDemoTests-Info.plist"; sourceTree = "<group>"; };
+		038FC3E119A62A70004CB198 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		038FC3E319A62A70004CB198 /* UberKitDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UberKitDemoTests.m; sourceTree = "<group>"; };
+		038FC3ED19A62A8E004CB198 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		038FC3EE19A62A8E004CB198 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		038FC3F219A62B23004CB198 /* UberPrice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UberPrice.h; sourceTree = "<group>"; };
+		038FC3F319A62B23004CB198 /* UberPrice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UberPrice.m; sourceTree = "<group>"; };
+		038FC3F419A62B23004CB198 /* UberProduct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UberProduct.h; sourceTree = "<group>"; };
+		038FC3F519A62B23004CB198 /* UberProduct.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UberProduct.m; sourceTree = "<group>"; };
+		038FC3F619A62B23004CB198 /* UberTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UberTime.h; sourceTree = "<group>"; };
+		038FC3F719A62B23004CB198 /* UberTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UberTime.m; sourceTree = "<group>"; };
+		038FC3F819A62B23004CB198 /* UberKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UberKit.h; sourceTree = "<group>"; };
+		038FC3F919A62B23004CB198 /* UberKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UberKit.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		038FC3B219A62A6F004CB198 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				038FC3BB19A62A6F004CB198 /* CoreGraphics.framework in Frameworks */,
+				038FC3BD19A62A6F004CB198 /* UIKit.framework in Frameworks */,
+				038FC3B919A62A6F004CB198 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		038FC3D319A62A6F004CB198 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				038FC3D819A62A6F004CB198 /* XCTest.framework in Frameworks */,
+				038FC3DA19A62A6F004CB198 /* UIKit.framework in Frameworks */,
+				038FC3D919A62A6F004CB198 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		038FC3AC19A62A6F004CB198 = {
+			isa = PBXGroup;
+			children = (
+				038FC3BE19A62A6F004CB198 /* UberKitDemo */,
+				038FC3DD19A62A70004CB198 /* UberKitDemoTests */,
+				038FC3B719A62A6F004CB198 /* Frameworks */,
+				038FC3B619A62A6F004CB198 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		038FC3B619A62A6F004CB198 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				038FC3B519A62A6F004CB198 /* UberKitDemo.app */,
+				038FC3D619A62A6F004CB198 /* UberKitDemoTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		038FC3B719A62A6F004CB198 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				038FC3B819A62A6F004CB198 /* Foundation.framework */,
+				038FC3BA19A62A6F004CB198 /* CoreGraphics.framework */,
+				038FC3BC19A62A6F004CB198 /* UIKit.framework */,
+				038FC3D719A62A6F004CB198 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		038FC3BE19A62A6F004CB198 /* UberKitDemo */ = {
+			isa = PBXGroup;
+			children = (
+				038FC3F019A62B23004CB198 /* UberKit */,
+				038FC3C719A62A6F004CB198 /* UberKitDemoAppDelegate.h */,
+				038FC3C819A62A6F004CB198 /* UberKitDemoAppDelegate.m */,
+				038FC3CA19A62A6F004CB198 /* Main.storyboard */,
+				038FC3ED19A62A8E004CB198 /* ViewController.h */,
+				038FC3EE19A62A8E004CB198 /* ViewController.m */,
+				038FC3D019A62A6F004CB198 /* Images.xcassets */,
+				038FC3BF19A62A6F004CB198 /* Supporting Files */,
+			);
+			path = UberKitDemo;
+			sourceTree = "<group>";
+		};
+		038FC3BF19A62A6F004CB198 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				038FC3C019A62A6F004CB198 /* UberKitDemo-Info.plist */,
+				038FC3C119A62A6F004CB198 /* InfoPlist.strings */,
+				038FC3C419A62A6F004CB198 /* main.m */,
+				038FC3C619A62A6F004CB198 /* UberKitDemo-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		038FC3DD19A62A70004CB198 /* UberKitDemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				038FC3E319A62A70004CB198 /* UberKitDemoTests.m */,
+				038FC3DE19A62A70004CB198 /* Supporting Files */,
+			);
+			path = UberKitDemoTests;
+			sourceTree = "<group>";
+		};
+		038FC3DE19A62A70004CB198 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				038FC3DF19A62A70004CB198 /* UberKitDemoTests-Info.plist */,
+				038FC3E019A62A70004CB198 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		038FC3F019A62B23004CB198 /* UberKit */ = {
+			isa = PBXGroup;
+			children = (
+				038FC3F119A62B23004CB198 /* Model */,
+				038FC3F819A62B23004CB198 /* UberKit.h */,
+				038FC3F919A62B23004CB198 /* UberKit.m */,
+			);
+			path = UberKit;
+			sourceTree = "<group>";
+		};
+		038FC3F119A62B23004CB198 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				038FC3F219A62B23004CB198 /* UberPrice.h */,
+				038FC3F319A62B23004CB198 /* UberPrice.m */,
+				038FC3F419A62B23004CB198 /* UberProduct.h */,
+				038FC3F519A62B23004CB198 /* UberProduct.m */,
+				038FC3F619A62B23004CB198 /* UberTime.h */,
+				038FC3F719A62B23004CB198 /* UberTime.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		038FC3B419A62A6F004CB198 /* UberKitDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 038FC3E719A62A70004CB198 /* Build configuration list for PBXNativeTarget "UberKitDemo" */;
+			buildPhases = (
+				038FC3B119A62A6F004CB198 /* Sources */,
+				038FC3B219A62A6F004CB198 /* Frameworks */,
+				038FC3B319A62A6F004CB198 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UberKitDemo;
+			productName = UberKitDemo;
+			productReference = 038FC3B519A62A6F004CB198 /* UberKitDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		038FC3D519A62A6F004CB198 /* UberKitDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 038FC3EA19A62A70004CB198 /* Build configuration list for PBXNativeTarget "UberKitDemoTests" */;
+			buildPhases = (
+				038FC3D219A62A6F004CB198 /* Sources */,
+				038FC3D319A62A6F004CB198 /* Frameworks */,
+				038FC3D419A62A6F004CB198 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				038FC3DC19A62A70004CB198 /* PBXTargetDependency */,
+			);
+			name = UberKitDemoTests;
+			productName = UberKitDemoTests;
+			productReference = 038FC3D619A62A6F004CB198 /* UberKitDemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		038FC3AD19A62A6F004CB198 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = UberKitDemo;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Sachin Kesiraju";
+				TargetAttributes = {
+					038FC3D519A62A6F004CB198 = {
+						TestTargetID = 038FC3B419A62A6F004CB198;
+					};
+				};
+			};
+			buildConfigurationList = 038FC3B019A62A6F004CB198 /* Build configuration list for PBXProject "UberKitDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 038FC3AC19A62A6F004CB198;
+			productRefGroup = 038FC3B619A62A6F004CB198 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				038FC3B419A62A6F004CB198 /* UberKitDemo */,
+				038FC3D519A62A6F004CB198 /* UberKitDemoTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		038FC3B319A62A6F004CB198 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				038FC3D119A62A6F004CB198 /* Images.xcassets in Resources */,
+				038FC3C319A62A6F004CB198 /* InfoPlist.strings in Resources */,
+				038FC3CC19A62A6F004CB198 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		038FC3D419A62A6F004CB198 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				038FC3E219A62A70004CB198 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		038FC3B119A62A6F004CB198 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				038FC3FC19A62B23004CB198 /* UberTime.m in Sources */,
+				038FC3FB19A62B23004CB198 /* UberProduct.m in Sources */,
+				038FC3EF19A62A8E004CB198 /* ViewController.m in Sources */,
+				038FC3C919A62A6F004CB198 /* UberKitDemoAppDelegate.m in Sources */,
+				038FC3FD19A62B23004CB198 /* UberKit.m in Sources */,
+				038FC3C519A62A6F004CB198 /* main.m in Sources */,
+				038FC3FA19A62B23004CB198 /* UberPrice.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		038FC3D219A62A6F004CB198 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				038FC3E419A62A70004CB198 /* UberKitDemoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		038FC3DC19A62A70004CB198 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 038FC3B419A62A6F004CB198 /* UberKitDemo */;
+			targetProxy = 038FC3DB19A62A70004CB198 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		038FC3C119A62A6F004CB198 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				038FC3C219A62A6F004CB198 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		038FC3CA19A62A6F004CB198 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				038FC3CB19A62A6F004CB198 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		038FC3E019A62A70004CB198 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				038FC3E119A62A70004CB198 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		038FC3E519A62A70004CB198 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		038FC3E619A62A70004CB198 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		038FC3E819A62A70004CB198 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "UberKitDemo/UberKitDemo-Prefix.pch";
+				INFOPLIST_FILE = "UberKitDemo/UberKitDemo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		038FC3E919A62A70004CB198 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "UberKitDemo/UberKitDemo-Prefix.pch";
+				INFOPLIST_FILE = "UberKitDemo/UberKitDemo-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		038FC3EB19A62A70004CB198 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/UberKitDemo.app/UberKitDemo";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "UberKitDemo/UberKitDemo-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "UberKitDemoTests/UberKitDemoTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		038FC3EC19A62A70004CB198 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/UberKitDemo.app/UberKitDemo";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "UberKitDemo/UberKitDemo-Prefix.pch";
+				INFOPLIST_FILE = "UberKitDemoTests/UberKitDemoTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		038FC3B019A62A6F004CB198 /* Build configuration list for PBXProject "UberKitDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				038FC3E519A62A70004CB198 /* Debug */,
+				038FC3E619A62A70004CB198 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		038FC3E719A62A70004CB198 /* Build configuration list for PBXNativeTarget "UberKitDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				038FC3E819A62A70004CB198 /* Debug */,
+				038FC3E919A62A70004CB198 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		038FC3EA19A62A70004CB198 /* Build configuration list for PBXNativeTarget "UberKitDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				038FC3EB19A62A70004CB198 /* Debug */,
+				038FC3EC19A62A70004CB198 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 038FC3AD19A62A6F004CB198 /* Project object */;
+}
