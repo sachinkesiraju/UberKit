@@ -25,8 +25,8 @@
 
 #import "UberKit.h"
 
-static const NSString *baseURL = @"https://api.uber.com/";
-static const NSString *serverToken = @"xJQu_PHZXMfSspyrZQ33vEkHDxrnxdoDwlsuH6cP"; //Add your server token
+static const NSString *baseURL = @"https://api.uber.com";
+static const NSString *serverToken = @"YOUR_SERVER_TOKEN"; //Add your server token
 
 @interface UberKit (Private)
 
@@ -43,7 +43,7 @@ static const NSString *serverToken = @"xJQu_PHZXMfSspyrZQ33vEkHDxrnxdoDwlsuH6cP"
 {
     // GET/v1/products
     
-    NSString *url = [NSString stringWithFormat:@"%@/v1/products/server_token=%@&latitude=%f&longitude=%f", baseURL, serverToken, latitude, longitude];
+    NSString *url = [NSString stringWithFormat:@"%@/v1/products?server_token=%@&latitude=%f&longitude=%f", baseURL, serverToken, latitude, longitude];
     [self performNetworkOperationWithURL:url success:^(NSDictionary *results)
      {
          NSLog(@"Result %@", results);
@@ -62,7 +62,7 @@ static const NSString *serverToken = @"xJQu_PHZXMfSspyrZQ33vEkHDxrnxdoDwlsuH6cP"
 {
     // GET /v1/estimates/price
     
-    NSString *url = [NSString stringWithFormat:@"%@/v1/estimates/price/?server_token=%@&start_latitude=%f&start_longitude=%f&end_latitude=%f&end_longitude=%f", baseURL, serverToken, startLatitude, startLongitude, endLatitude, endLongitude];
+    NSString *url = [NSString stringWithFormat:@"%@/v1/estimates/price?server_token=%@&start_latitude=%f&start_longitude=%f&end_latitude=%f&end_longitude=%f", baseURL, serverToken, startLatitude, startLongitude, endLatitude, endLongitude];
     [self performNetworkOperationWithURL:url success:^(NSDictionary *results)
      {
          UberPrice *price = [[UberPrice alloc] initWithDictionary:results];
