@@ -28,31 +28,33 @@
     [super viewDidLoad];
     
     UberKit *uberKit = [[UberKit alloc] init];
-    [uberKit getProductsForLocationWithLatitude:40.727 longitude:-74.1726 success:^(NSArray *products)
+    [uberKit getProductsForLocationWithLatitude:37.7833 longitude: -122.4167 success:^(NSArray *products)
      {
-         NSLog(@"Product view %@", products);
+         NSLog(@"Products %@", products);
+         UberProduct *product = [products objectAtIndex:0];
+         NSLog(@"Product name of first %@", product.description);
      }
     failure:^(NSError *error, NSHTTPURLResponse *response)
      {
          NSLog(@"Error %@", error);
      }];
     
-    [uberKit getTimeForProductArrivalWithStartLatitude:40.727 startLongitude:-74.1726 success:^(NSArray *times)
+    [uberKit getTimeForProductArrivalWithStartLatitude:37.7833 startLongitude: -122.4167 success:^(NSArray *times)
      {
-         NSLog(@"Times view %@", times);
+         NSLog(@"Times %@", times);
          UberTime *time = [times objectAtIndex:0];
-         NSLog(@"Time %@ estimate %@", time, [[times objectAtIndex:0] valueForKey:@"estimate"]);
+         NSLog(@"Time for first %f", time.estimate);
      }
     failure:^(NSError *error, NSHTTPURLResponse *response)
      {
          NSLog(@"Error %@", error);
      }];
     
-    [uberKit getPriceForTripWithStartLatitude:40.725 startLongitude:-74.1726 endLatitude:41.0 endLongitude:-75.0 success:^(NSArray *prices)
+    [uberKit getPriceForTripWithStartLatitude:37.7833 startLongitude: -122.4167 endLatitude:37.7 endLongitude: -122.42 success:^(NSArray *prices)
      {
-         NSLog(@"Prices view %@", prices);
+         NSLog(@"Prices %@", prices);
          UberPrice *price = [prices objectAtIndex:0];
-         NSLog(@"Price %@", price.estimate);
+         NSLog(@"Price for first %@", price.estimate);
      }
     failure:^(NSError *error, NSHTTPURLResponse *response)
      {
