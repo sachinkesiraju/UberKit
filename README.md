@@ -26,9 +26,7 @@ To get all products available from a particular location
      {
          if(!error)
          {
-             NSLog(@"Products %@", products);
-             UberProduct *product = [products objectAtIndex:0];
-             NSLog(@"Product name of first %@", product.description);
+             //Got the array of available products for the location.
          }
          else
          {
@@ -43,9 +41,7 @@ To get the time for arrival of a product to a particular location
      {
          if(!error)
          {
-             NSLog(@"Times %@", times);
-             UberTime *time = [times objectAtIndex:0];
-             NSLog(@"Time for first %f", time.estimate);
+             //Got the array of available products and the time they'll take to reach the mentioned location.
          }
          else
          {
@@ -60,9 +56,7 @@ To get the price for a trip between two locations
      {
          if(!error)
          {
-             NSLog(@"Prices %@", prices);
-             UberPrice *price = [prices objectAtIndex:0];
-             NSLog(@"Price for first %@", price.estimate);
+             //Got the array of available products and the price of a trip from the start location to the end location.
          }
          else
          {
