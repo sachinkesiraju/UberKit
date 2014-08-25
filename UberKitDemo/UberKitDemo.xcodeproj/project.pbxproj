@@ -65,6 +65,7 @@
 		038FC3F719A62B23004CB198 /* UberTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UberTime.m; sourceTree = "<group>"; };
 		038FC3F819A62B23004CB198 /* UberKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UberKit.h; sourceTree = "<group>"; };
 		038FC3F919A62B23004CB198 /* UberKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UberKit.m; sourceTree = "<group>"; };
+		03C8B6D419AB623900747D3D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +114,7 @@
 		038FC3B719A62A6F004CB198 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				03C8B6D419AB623900747D3D /* CoreLocation.framework */,
 				038FC3B819A62A6F004CB198 /* Foundation.framework */,
 				038FC3BA19A62A6F004CB198 /* CoreGraphics.framework */,
 				038FC3BC19A62A6F004CB198 /* UIKit.framework */,
@@ -497,6 +499,7 @@
 				038FC3E919A62A70004CB198 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		038FC3EA19A62A70004CB198 /* Build configuration list for PBXNativeTarget "UberKitDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -505,6 +508,7 @@
 				038FC3EC19A62A70004CB198 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

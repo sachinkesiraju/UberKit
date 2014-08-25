@@ -32,7 +32,6 @@
     
     if(self)
     {
-        NSLog(@"Initializing dictionary %@", dictionary);
         _product_id = [dictionary objectForKey:@"product_id"];
         _description = [dictionary objectForKey:@"description"];
         _display_name = [dictionary objectForKey:@"display_name"];

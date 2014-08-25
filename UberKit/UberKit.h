@@ -24,31 +24,33 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
 
 #import "UberProduct.h"
 #import "UberPrice.h"
 #import "UberTime.h"
 
-typedef void (^SuccessHandler) (NSArray *resultsArray);
-typedef void (^FailureHandler) (NSError *error, NSHTTPURLResponse *response);
+typedef void (^CompletionHandler) (NSArray *resultsArray, NSURLResponse *response, NSError *error);
 
 @interface UberKit : NSObject
 
+@property (strong, nonatomic) NSString *serverToken;
+
+#pragma mark - Initialization
+
+- (instancetype) initWithServerToken: (NSString *) serverToken;
+
 #pragma mark - Product Types
 
-- (void) getProductsForLocationWithLatitude: (float) latitude longitude: (float) longitude
-                                    success:(SuccessHandler)success
-                                    failure:(FailureHandler)failure;
+- (void) getProductsForLocation: (CLLocation *) location withCompletionHandler: (CompletionHandler) completion;
+
 #pragma mark - Price Estimates
 
-- (void) getPriceForTripWithStartLatitude: (float) startLatitude startLongitude: (float) startLongitude endLatitude: (float) endLatitude endLongitude: (float) endLongitude
-                                  success:(SuccessHandler)success
-                                  failure:(FailureHandler)failure;
+- (void) getPriceForTripWithStartLocation: (CLLocation *) startLocation endLocation:(CLLocation *) endLocation withCompletionHandler: (CompletionHandler) completion;
+
 #pragma mark - Time Estimates
 
-- (void) getTimeForProductArrivalWithStartLatitude: (float) startLatitude startLongitude: (float) startLongitude
-                                           success:(SuccessHandler)success
-                                           failure:(FailureHandler)failure;
+- (void) getTimeForProductArrivalWithLocation: (CLLocation *) location withCompletionHandler: (CompletionHandler) completion;
 
 #pragma mark - Deep Linking
 
