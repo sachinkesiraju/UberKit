@@ -11,45 +11,63 @@ To add UberKit to your iOS app, add the UberKit folder to your project and `#imp
 
 <h2> Implementation </h2>
 
-To implement UberKit, first initialize it
+To implement UberKit, first initialize it with your server token
+
+You can get your server token from <a href = http://developer.uber.com> Uber Developers </a>
 
 ```
-  UberKit *uberKit = [[UberKit alloc] init];
+  UberKit *uberKit = [[UberKit alloc] initWithServerToken:@"YOUR_SERVER_TOKEN"];
 ```
+
 To get all products available from a particular location
 
 ```
- [uberKit getProductsForLocationWithLatitude:START_LAT longitude:START_LONG success:^(NSArray *products)
+ [uberKit getProductsForLocation:location withCompletionHandler:^(NSArray *products, NSURLResponse *response, NSError *error)
      {
-        //Got the array of available products
-     }
-    failure:^(NSError *error, NSHTTPURLResponse *response)
-     {
-         NSLog(@"Error %@", error);
+         if(!error)
+         {
+             NSLog(@"Products %@", products);
+             UberProduct *product = [products objectAtIndex:0];
+             NSLog(@"Product name of first %@", product.description);
+         }
+         else
+         {
+             NSLog(@"Error %@", error);
+         }
      }];
 ```
 
 To get the time for arrival of a product to a particular location
 ```
-[uberKit getTimeForProductArrivalWithStartLatitude:START_LAT startLongitude:START_LONG success:^(NSArray *times)
+[uberKit getTimeForProductArrivalWithLocation:location withCompletionHandler:^(NSArray *times, NSURLResponse *response, NSError *error)
      {
-        //Got the array of available products and the time they'll take to reach the coordinates
-     }
-    failure:^(NSError *error, NSHTTPURLResponse *response)
-     {
-         NSLog(@"Error %@", error);
+         if(!error)
+         {
+             NSLog(@"Times %@", times);
+             UberTime *time = [times objectAtIndex:0];
+             NSLog(@"Time for first %f", time.estimate);
+         }
+         else
+         {
+             NSLog(@"Error %@", error);
+         }
      }];
 ```
 
 To get the price for a trip between two locations
 ```
-[uberKit getPriceForTripWithStartLatitude:START_LAT startLongitude:START_LONG endLatitude:END_LAT endLongitude:END_LONG success:^(NSArray *prices)
+[uberKit getPriceForTripWithStartLocation:location endLocation:endLocation  withCompletionHandler:^(NSArray *prices, NSURLResponse *response, NSError *error)
      {
-        //Got the array of available products and the price it will take to ride from the start point to the end point
-     }
-    failure:^(NSError *error, NSHTTPURLResponse *response)
-     {
-         NSLog(@"Error %@", error);
+         if(!error)
+         {
+             NSLog(@"Prices %@", prices);
+             UberPrice *price = [prices objectAtIndex:0];
+             NSLog(@"Price for first %@", price.estimate);
+         }
+         else
+         {
+             NSLog(@"Error %@", error);
+         }
      }];
 ```
 For more help, check out the <a href = https://github.com/sachinkesiraju/UberKit/tree/master/UberKitDemo> Demo </a>!
