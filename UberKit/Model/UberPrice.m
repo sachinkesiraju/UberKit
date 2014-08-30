@@ -37,8 +37,14 @@
         _currencyCode = [dictionary objectForKey:@"currency_code"];
         _displayName = [dictionary objectForKey:@"display_name"];
         _estimate = [dictionary objectForKey:@"estimate"];
-        _lowEstimate = [[dictionary objectForKey:@"low_estimate"] intValue];
-        _highEstimate = [[dictionary objectForKey:@"high_estimate"] intValue];
+        _lowEstimate = -1;
+        _highEstimate = -1;
+        NSString *lowE = [dictionary objectForKey:@"low_estimate"];
+        NSString *highE = [dictionary objectForKey:@"high_estimate"];
+        if ( ![lowE isKindOfClass:[NSNull class]] )
+            _lowEstimate = [lowE intValue];
+        if ( ![highE isKindOfClass:[NSNull class]] )
+            _highEstimate = [highE intValue];
         _surgeMultiplier = [[dictionary objectForKey:@"surge_multiplier"] floatValue];
     }
     

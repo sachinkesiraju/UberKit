@@ -61,9 +61,7 @@ static const NSString *baseURL = @"https://api.uber.com";
              NSMutableArray *availableProducts = [[NSMutableArray alloc] init];
              for(int i=0; i<products.count; i++)
              {
-                 NSLog(@"Object being sent to product %@", [products objectAtIndex:i]);
                  UberProduct *product = [[UberProduct alloc] initWithDictionary:[products objectAtIndex:i]];
-                 NSLog(@"Product %@", product);
                  [availableProducts addObject:product];
              }
              completion(availableProducts, response, error);
@@ -91,9 +89,11 @@ static const NSString *baseURL = @"https://api.uber.com";
              NSMutableArray *availablePrices = [[NSMutableArray alloc] init];
              for(int i=0; i<prices.count; i++)
              {
-                 NSLog(@"Object being sent to price %@", [prices objectAtIndex:i]);
                  UberPrice *price = [[UberPrice alloc] initWithDictionary:[prices objectAtIndex:i]];
-                 [availablePrices addObject:price];
+                 if(price.lowEstimate > -1)
+                 {
+                     [availablePrices addObject:price];
+                 }
              }
              completion(availablePrices, response, error);
          }
@@ -154,7 +154,6 @@ static const NSString *baseURL = @"https://api.uber.com";
 
 - (void) performNetworkOperationWithURL:(NSString *)url completionHandler:(void (^)(NSDictionary *, NSURLResponse *, NSError *))completion
 {
-    NSLog(@"Url %@", url);
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration];
     
@@ -165,16 +164,14 @@ static const NSString *baseURL = @"https://api.uber.com";
             NSDictionary *serializedResults = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
             
             if (jsonError == nil) {
-                NSLog(@"Success in pulling data");
                 completion(serializedResults, response, jsonError);
             } else {
                 NSHTTPURLResponse *convertedResponse = (NSHTTPURLResponse *)response;
                 completion(nil, convertedResponse, jsonError);
             }
-            
-        } else {
-            
-            NSLog(@"Error in convertedResponse");
+        }
+        else
+        {
             NSHTTPURLResponse *convertedResponse = (NSHTTPURLResponse *)response;
             completion(nil, convertedResponse, error);
         }
