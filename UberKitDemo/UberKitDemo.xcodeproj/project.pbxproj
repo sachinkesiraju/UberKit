@@ -25,6 +25,21 @@
 		038FC3FB19A62B23004CB198 /* UberProduct.m in Sources */ = {isa = PBXBuildFile; fileRef = 038FC3F519A62B23004CB198 /* UberProduct.m */; };
 		038FC3FC19A62B23004CB198 /* UberTime.m in Sources */ = {isa = PBXBuildFile; fileRef = 038FC3F719A62B23004CB198 /* UberTime.m */; };
 		038FC3FD19A62B23004CB198 /* UberKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 038FC3F919A62B23004CB198 /* UberKit.m */; };
+		03C118CE19CEE03800CEAF18 /* NSData+NXOAuth2.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C118AF19CEE03800CEAF18 /* NSData+NXOAuth2.m */; };
+		03C118CF19CEE03800CEAF18 /* NSString+NXOAuth2.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C118B119CEE03800CEAF18 /* NSString+NXOAuth2.m */; };
+		03C118D019CEE03800CEAF18 /* NSURL+NXOAuth2.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C118B319CEE03800CEAF18 /* NSURL+NXOAuth2.m */; };
+		03C118D119CEE03800CEAF18 /* NXOAuth2AccessToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C118B619CEE03800CEAF18 /* NXOAuth2AccessToken.m */; };
+		03C118D219CEE03800CEAF18 /* NXOAuth2Account.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C118B919CEE03800CEAF18 /* NXOAuth2Account.m */; };
+		03C118D319CEE03800CEAF18 /* NXOAuth2AccountStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C118BB19CEE03800CEAF18 /* NXOAuth2AccountStore.m */; };
+		03C118D419CEE03800CEAF18 /* NXOAuth2Client.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C118BD19CEE03800CEAF18 /* NXOAuth2Client.m */; };
+		03C118D519CEE03800CEAF18 /* NXOAuth2Connection.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C118C019CEE03800CEAF18 /* NXOAuth2Connection.m */; };
+		03C118D619CEE03800CEAF18 /* NXOAuth2Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C118C319CEE03800CEAF18 /* NXOAuth2Constants.m */; };
+		03C118D719CEE03800CEAF18 /* NXOAuth2FileStreamWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C118C519CEE03800CEAF18 /* NXOAuth2FileStreamWrapper.m */; };
+		03C118D819CEE03800CEAF18 /* NXOAuth2PostBodyPart.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C118C719CEE03800CEAF18 /* NXOAuth2PostBodyPart.m */; };
+		03C118D919CEE03800CEAF18 /* NXOAuth2PostBodyStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C118C919CEE03800CEAF18 /* NXOAuth2PostBodyStream.m */; };
+		03C118DA19CEE03800CEAF18 /* NXOAuth2Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C118CB19CEE03800CEAF18 /* NXOAuth2Request.m */; };
+		03C118DD19CEE43300CEAF18 /* UberActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C118DC19CEE43300CEAF18 /* UberActivity.m */; };
+		03C118E019CEFC6D00CEAF18 /* UberProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 03C118DF19CEFC6D00CEAF18 /* UberProfile.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +80,42 @@
 		038FC3F719A62B23004CB198 /* UberTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UberTime.m; sourceTree = "<group>"; };
 		038FC3F819A62B23004CB198 /* UberKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UberKit.h; sourceTree = "<group>"; };
 		038FC3F919A62B23004CB198 /* UberKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UberKit.m; sourceTree = "<group>"; };
+		03C118AE19CEE03800CEAF18 /* NSData+NXOAuth2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+NXOAuth2.h"; sourceTree = "<group>"; };
+		03C118AF19CEE03800CEAF18 /* NSData+NXOAuth2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+NXOAuth2.m"; sourceTree = "<group>"; };
+		03C118B019CEE03800CEAF18 /* NSString+NXOAuth2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+NXOAuth2.h"; sourceTree = "<group>"; };
+		03C118B119CEE03800CEAF18 /* NSString+NXOAuth2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+NXOAuth2.m"; sourceTree = "<group>"; };
+		03C118B219CEE03800CEAF18 /* NSURL+NXOAuth2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+NXOAuth2.h"; sourceTree = "<group>"; };
+		03C118B319CEE03800CEAF18 /* NSURL+NXOAuth2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+NXOAuth2.m"; sourceTree = "<group>"; };
+		03C118B419CEE03800CEAF18 /* NXOAuth2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NXOAuth2.h; sourceTree = "<group>"; };
+		03C118B519CEE03800CEAF18 /* NXOAuth2AccessToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NXOAuth2AccessToken.h; sourceTree = "<group>"; };
+		03C118B619CEE03800CEAF18 /* NXOAuth2AccessToken.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NXOAuth2AccessToken.m; sourceTree = "<group>"; };
+		03C118B719CEE03800CEAF18 /* NXOAuth2Account+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NXOAuth2Account+Private.h"; sourceTree = "<group>"; };
+		03C118B819CEE03800CEAF18 /* NXOAuth2Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NXOAuth2Account.h; sourceTree = "<group>"; };
+		03C118B919CEE03800CEAF18 /* NXOAuth2Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NXOAuth2Account.m; sourceTree = "<group>"; };
+		03C118BA19CEE03800CEAF18 /* NXOAuth2AccountStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NXOAuth2AccountStore.h; sourceTree = "<group>"; };
+		03C118BB19CEE03800CEAF18 /* NXOAuth2AccountStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NXOAuth2AccountStore.m; sourceTree = "<group>"; };
+		03C118BC19CEE03800CEAF18 /* NXOAuth2Client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NXOAuth2Client.h; sourceTree = "<group>"; };
+		03C118BD19CEE03800CEAF18 /* NXOAuth2Client.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NXOAuth2Client.m; sourceTree = "<group>"; };
+		03C118BE19CEE03800CEAF18 /* NXOAuth2ClientDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NXOAuth2ClientDelegate.h; sourceTree = "<group>"; };
+		03C118BF19CEE03800CEAF18 /* NXOAuth2Connection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NXOAuth2Connection.h; sourceTree = "<group>"; };
+		03C118C019CEE03800CEAF18 /* NXOAuth2Connection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NXOAuth2Connection.m; sourceTree = "<group>"; };
+		03C118C119CEE03800CEAF18 /* NXOAuth2ConnectionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NXOAuth2ConnectionDelegate.h; sourceTree = "<group>"; };
+		03C118C219CEE03800CEAF18 /* NXOAuth2Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NXOAuth2Constants.h; sourceTree = "<group>"; };
+		03C118C319CEE03800CEAF18 /* NXOAuth2Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NXOAuth2Constants.m; sourceTree = "<group>"; };
+		03C118C419CEE03800CEAF18 /* NXOAuth2FileStreamWrapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NXOAuth2FileStreamWrapper.h; sourceTree = "<group>"; };
+		03C118C519CEE03800CEAF18 /* NXOAuth2FileStreamWrapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NXOAuth2FileStreamWrapper.m; sourceTree = "<group>"; };
+		03C118C619CEE03800CEAF18 /* NXOAuth2PostBodyPart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NXOAuth2PostBodyPart.h; sourceTree = "<group>"; };
+		03C118C719CEE03800CEAF18 /* NXOAuth2PostBodyPart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NXOAuth2PostBodyPart.m; sourceTree = "<group>"; };
+		03C118C819CEE03800CEAF18 /* NXOAuth2PostBodyStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NXOAuth2PostBodyStream.h; sourceTree = "<group>"; };
+		03C118C919CEE03800CEAF18 /* NXOAuth2PostBodyStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NXOAuth2PostBodyStream.m; sourceTree = "<group>"; };
+		03C118CA19CEE03800CEAF18 /* NXOAuth2Request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NXOAuth2Request.h; sourceTree = "<group>"; };
+		03C118CB19CEE03800CEAF18 /* NXOAuth2Request.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NXOAuth2Request.m; sourceTree = "<group>"; };
+		03C118CC19CEE03800CEAF18 /* NXOAuth2TrustDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NXOAuth2TrustDelegate.h; sourceTree = "<group>"; };
+		03C118CD19CEE03800CEAF18 /* OAuth2Client_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuth2Client_Prefix.pch; sourceTree = "<group>"; };
+		03C118DB19CEE43300CEAF18 /* UberActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UberActivity.h; sourceTree = "<group>"; };
+		03C118DC19CEE43300CEAF18 /* UberActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UberActivity.m; sourceTree = "<group>"; };
+		03C118DE19CEFC6D00CEAF18 /* UberProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UberProfile.h; sourceTree = "<group>"; };
+		03C118DF19CEFC6D00CEAF18 /* UberProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UberProfile.m; sourceTree = "<group>"; };
 		03C8B6D419AB623900747D3D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -170,6 +221,7 @@
 		038FC3F019A62B23004CB198 /* UberKit */ = {
 			isa = PBXGroup;
 			children = (
+				03C118AD19CEE03800CEAF18 /* OAuth2Client */,
 				038FC3F119A62B23004CB198 /* Model */,
 				038FC3F819A62B23004CB198 /* UberKit.h */,
 				038FC3F919A62B23004CB198 /* UberKit.m */,
@@ -186,8 +238,51 @@
 				038FC3F519A62B23004CB198 /* UberProduct.m */,
 				038FC3F619A62B23004CB198 /* UberTime.h */,
 				038FC3F719A62B23004CB198 /* UberTime.m */,
+				03C118DB19CEE43300CEAF18 /* UberActivity.h */,
+				03C118DC19CEE43300CEAF18 /* UberActivity.m */,
+				03C118DE19CEFC6D00CEAF18 /* UberProfile.h */,
+				03C118DF19CEFC6D00CEAF18 /* UberProfile.m */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		03C118AD19CEE03800CEAF18 /* OAuth2Client */ = {
+			isa = PBXGroup;
+			children = (
+				03C118AE19CEE03800CEAF18 /* NSData+NXOAuth2.h */,
+				03C118AF19CEE03800CEAF18 /* NSData+NXOAuth2.m */,
+				03C118B019CEE03800CEAF18 /* NSString+NXOAuth2.h */,
+				03C118B119CEE03800CEAF18 /* NSString+NXOAuth2.m */,
+				03C118B219CEE03800CEAF18 /* NSURL+NXOAuth2.h */,
+				03C118B319CEE03800CEAF18 /* NSURL+NXOAuth2.m */,
+				03C118B419CEE03800CEAF18 /* NXOAuth2.h */,
+				03C118B519CEE03800CEAF18 /* NXOAuth2AccessToken.h */,
+				03C118B619CEE03800CEAF18 /* NXOAuth2AccessToken.m */,
+				03C118B719CEE03800CEAF18 /* NXOAuth2Account+Private.h */,
+				03C118B819CEE03800CEAF18 /* NXOAuth2Account.h */,
+				03C118B919CEE03800CEAF18 /* NXOAuth2Account.m */,
+				03C118BA19CEE03800CEAF18 /* NXOAuth2AccountStore.h */,
+				03C118BB19CEE03800CEAF18 /* NXOAuth2AccountStore.m */,
+				03C118BC19CEE03800CEAF18 /* NXOAuth2Client.h */,
+				03C118BD19CEE03800CEAF18 /* NXOAuth2Client.m */,
+				03C118BE19CEE03800CEAF18 /* NXOAuth2ClientDelegate.h */,
+				03C118BF19CEE03800CEAF18 /* NXOAuth2Connection.h */,
+				03C118C019CEE03800CEAF18 /* NXOAuth2Connection.m */,
+				03C118C119CEE03800CEAF18 /* NXOAuth2ConnectionDelegate.h */,
+				03C118C219CEE03800CEAF18 /* NXOAuth2Constants.h */,
+				03C118C319CEE03800CEAF18 /* NXOAuth2Constants.m */,
+				03C118C419CEE03800CEAF18 /* NXOAuth2FileStreamWrapper.h */,
+				03C118C519CEE03800CEAF18 /* NXOAuth2FileStreamWrapper.m */,
+				03C118C619CEE03800CEAF18 /* NXOAuth2PostBodyPart.h */,
+				03C118C719CEE03800CEAF18 /* NXOAuth2PostBodyPart.m */,
+				03C118C819CEE03800CEAF18 /* NXOAuth2PostBodyStream.h */,
+				03C118C919CEE03800CEAF18 /* NXOAuth2PostBodyStream.m */,
+				03C118CA19CEE03800CEAF18 /* NXOAuth2Request.h */,
+				03C118CB19CEE03800CEAF18 /* NXOAuth2Request.m */,
+				03C118CC19CEE03800CEAF18 /* NXOAuth2TrustDelegate.h */,
+				03C118CD19CEE03800CEAF18 /* OAuth2Client_Prefix.pch */,
+			);
+			path = OAuth2Client;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,12 +383,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				03C118D319CEE03800CEAF18 /* NXOAuth2AccountStore.m in Sources */,
+				03C118E019CEFC6D00CEAF18 /* UberProfile.m in Sources */,
 				038FC3FC19A62B23004CB198 /* UberTime.m in Sources */,
+				03C118D119CEE03800CEAF18 /* NXOAuth2AccessToken.m in Sources */,
+				03C118D019CEE03800CEAF18 /* NSURL+NXOAuth2.m in Sources */,
+				03C118D619CEE03800CEAF18 /* NXOAuth2Constants.m in Sources */,
+				03C118DD19CEE43300CEAF18 /* UberActivity.m in Sources */,
+				03C118D819CEE03800CEAF18 /* NXOAuth2PostBodyPart.m in Sources */,
+				03C118D519CEE03800CEAF18 /* NXOAuth2Connection.m in Sources */,
 				038FC3FB19A62B23004CB198 /* UberProduct.m in Sources */,
+				03C118D719CEE03800CEAF18 /* NXOAuth2FileStreamWrapper.m in Sources */,
+				03C118D419CEE03800CEAF18 /* NXOAuth2Client.m in Sources */,
 				038FC3EF19A62A8E004CB198 /* ViewController.m in Sources */,
+				03C118CE19CEE03800CEAF18 /* NSData+NXOAuth2.m in Sources */,
+				03C118CF19CEE03800CEAF18 /* NSString+NXOAuth2.m in Sources */,
 				038FC3C919A62A6F004CB198 /* UberKitDemoAppDelegate.m in Sources */,
+				03C118DA19CEE03800CEAF18 /* NXOAuth2Request.m in Sources */,
 				038FC3FD19A62B23004CB198 /* UberKit.m in Sources */,
 				038FC3C519A62A6F004CB198 /* main.m in Sources */,
+				03C118D219CEE03800CEAF18 /* NXOAuth2Account.m in Sources */,
+				03C118D919CEE03800CEAF18 /* NXOAuth2PostBodyStream.m in Sources */,
 				038FC3FA19A62B23004CB198 /* UberPrice.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

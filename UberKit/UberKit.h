@@ -25,20 +25,37 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
-
+#import "NXOAuth2.h"
 #import "UberProduct.h"
 #import "UberPrice.h"
 #import "UberTime.h"
+#import "UberActivity.h"
+#import "UberProfile.h"
 
 typedef void (^CompletionHandler) (NSArray *resultsArray, NSURLResponse *response, NSError *error);
+typedef void (^ProfileHandler) (UberProfile *profile, NSURLResponse *response, NSError *error);
 
 @interface UberKit : NSObject
 
 @property (strong, nonatomic) NSString *serverToken;
+@property (strong, nonatomic) NSString *clientID;
+@property (strong, nonatomic) NSString *clientSecret;
+@property (strong, nonatomic) NSString *redirectURL;
+@property (strong, nonatomic) NSString *applicationName;
+
++ (UberKit *) sharedInstance;
+
+- (BOOL)handleLoginRedirectFromUrl:(NSURL *)url sourceApplication:(NSString *)sourceApplication;
 
 #pragma mark - Initialization
 
 - (instancetype) initWithServerToken: (NSString *) serverToken;
+- (instancetype) initWithClientID: (NSString *) clientId ClientSecret: (NSString *) clientSecret RedirectURL: (NSString *) redirectURL ApplicationName: (NSString *) applicationName;
+
+#pragma mark - Login
+
+- (void) startLogin;
+- (NSString *) getStoredAuthToken;
 
 #pragma mark - Product Types
 
@@ -51,6 +68,14 @@ typedef void (^CompletionHandler) (NSArray *resultsArray, NSURLResponse *respons
 #pragma mark - Time Estimates
 
 - (void) getTimeForProductArrivalWithLocation: (CLLocation *) location withCompletionHandler: (CompletionHandler) completion;
+
+#pragma mark - User Activity
+
+- (void) getUserActivityWithCompletionHandler:(CompletionHandler) completion;
+
+#pragma mark - User Profie
+
+- (void) getUserProfileWithCompletionHandler: (ProfileHandler) handler;
 
 #pragma mark - Deep Linking
 

@@ -28,7 +28,7 @@
 @interface UberProduct : NSObject
 
 @property (nonatomic) NSString *product_id;
-@property (nonatomic) NSString *description;
+@property (nonatomic) NSString *product_description;
 @property (nonatomic) NSString *display_name;
 @property (nonatomic) int capacity;
 @property (nonatomic) NSString *image;

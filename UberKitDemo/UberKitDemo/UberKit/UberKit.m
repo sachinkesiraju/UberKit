@@ -26,6 +26,13 @@
 #import "UberKit.h"
 
 static const NSString *baseURL = @"https://api.uber.com";
+NSString * const mobile_safari_string = @"com.apple.mobilesafari";
+
+@interface UberKit()
+
+@property (strong, nonatomic) NSString *accessToken;
+
+@end
 
 @interface UberKit (Private)
 
@@ -34,6 +41,19 @@ static const NSString *baseURL = @"https://api.uber.com";
 @end
 
 @implementation UberKit
+
+#pragma mark - Initialization
+
++ (UberKit *) sharedInstance
+{
+    static UberKit *_sharedInstance;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _sharedInstance = [[self alloc] init];
+    });
+    
+    return _sharedInstance;
+}
 
 - (instancetype) initWithServerToken:(NSString *)serverToken
 {
@@ -44,6 +64,95 @@ static const NSString *baseURL = @"https://api.uber.com";
     }
     
     return self;
+}
+
+- (instancetype) initWithClientID:(NSString *)clientId ClientSecret:(NSString *)clientSecret RedirectURL:(NSString *)redirectURL ApplicationName:(NSString *)applicationName
+{
+    self = [super init];
+    if(self)
+    {
+        _clientID = clientId;
+        _clientSecret = clientSecret;
+        _redirectURL = redirectURL;
+        _applicationName = applicationName;
+    }
+    
+    return self;
+}
+
+#pragma mark - Login
+
+- (void) startLogin
+{
+    [self setupOAuth2AccountStore];
+    [self requestOAuth2Access];
+}
+
+- (NSString *) getStoredAuthToken
+{
+    return _accessToken;
+}
+
+- (BOOL) handleLoginRedirectFromUrl:(NSURL *)url sourceApplication:(NSString *)sourceApplication
+{
+    if ([sourceApplication isEqualToString:mobile_safari_string] && [url.absoluteURL.host hasPrefix:_redirectURL])
+    {
+        NSString *code = nil;
+        NSArray *urlParams = [[url query] componentsSeparatedByString:@"&"];
+        for (NSString *param in urlParams) {
+            NSArray *keyValue = [param componentsSeparatedByString:@"="];
+            NSString *key = [keyValue objectAtIndex:0];
+            if ([key isEqualToString:@"code"])
+            {
+                code = [keyValue objectAtIndex:1]; //retrieving the code
+                NSLog(@"%@", code);
+            }
+            if (code)
+            {
+                //Got the code, now retrieving the auth token
+                [self getAuthTokenForCode:code];
+            }
+            else
+            {
+                NSLog(@"There was an error returning from mobile safari");
+            }
+            
+            return NO;
+        }
+    }
+    
+    return YES;
+}
+
+- (void) getAuthTokenForCode: (NSString *) code
+{
+    NSString *data = [NSString stringWithFormat:@"code=%@&client_id=%@&client_secret=%@&redirect_uri=%@&grant_type=authorization_code", code, _clientID, _clientSecret, _redirectURL];
+    NSString *url = [NSString stringWithFormat:@"https://login.uber.com/oauth/token"];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:[data dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSURLResponse *response = nil;
+    NSError *error = nil;
+    NSData *authData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    if(!error)
+    {
+        NSError *jsonError = nil;
+        NSDictionary *authDictionary = [NSJSONSerialization JSONObjectWithData:authData options:0 error:&jsonError];
+        if(!jsonError)
+        {
+            _accessToken = [authDictionary objectForKey:@"access_token"];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"Token available" object:nil];
+        }
+        else
+        {
+            NSLog(@"Error retrieving access token %@", jsonError);
+        }
+    }
+    else
+    {
+        NSLog(@"Error in sending request for access token %@", error);
+    }
 }
 
 #pragma mark - Product Types
@@ -131,6 +240,107 @@ static const NSString *baseURL = @"https://api.uber.com";
              completion(nil, response, error);
          }
      }];
+}
+
+#pragma mark - User History
+
+- (void) getUserActivityWithCompletionHandler:(CompletionHandler)completion
+{
+    //GET /v1.1/history
+    
+    NSString *url = [NSString stringWithFormat:@"https://api.uber.com/v1.1/history?access_token=%@", _accessToken];
+    [self performNetworkOperationWithURL:url completionHandler:^(NSDictionary *activity, NSURLResponse *response, NSError *error)
+     {
+         if(!error)
+         {
+             int offset = [[activity objectForKey:@"offset"] intValue];
+             int limit = [[activity objectForKey:@"limit"] intValue];
+             int count = [[activity objectForKey:@"count"] intValue];
+             NSArray *history = [activity objectForKey:@"history"];
+             NSMutableArray *availableActivity = [[NSMutableArray alloc] init];
+             for(int i=0; i<history.count; i++)
+             {
+                 UberActivity *activity = [[UberActivity alloc] initWithDictionary:[history objectAtIndex:i]];
+                 [activity setLimit:limit];
+                 [activity setOffset:offset];
+                 [activity setCount:count];
+                 [availableActivity addObject:activity];
+             }
+             completion(availableActivity, response, error);
+         }
+         else
+         {
+             completion(nil, response, error);
+         }
+     }];
+}
+
+#pragma mark - User Profile
+
+- (void) getUserProfileWithCompletionHandler:(ProfileHandler)handler
+{
+    //GET /v1/me
+    
+    NSString *url = [NSString stringWithFormat:@"https://api.uber.com/v1.1/history?access_token=%@", _accessToken];
+    [self performNetworkOperationWithURL:url completionHandler:^(NSDictionary *profileDictionary, NSURLResponse *response, NSError *error)
+     {
+         if(profileDictionary)
+         {
+             UberProfile *profile = [[UberProfile alloc] initWithDictionary:profileDictionary];
+             handler(profile, response, error);
+         }
+         else
+         {
+             handler(nil, response, error);
+         }
+     }];
+}
+
+#pragma mark - OAuth
+
+- (void)setupOAuth2AccountStore
+{
+    [[NXOAuth2AccountStore sharedStore] setClientID:_clientID
+                                             secret:_clientSecret
+                                   authorizationURL:[NSURL URLWithString:@"https://login.uber.com/oauth/authorize"]
+                                           tokenURL:[NSURL URLWithString:@"https://login.uber.com/oauth/token"]
+                                        redirectURL:[NSURL URLWithString:_redirectURL]
+                                     forAccountType:_applicationName];
+    
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:NXOAuth2AccountStoreAccountsDidChangeNotification
+                                                      object:[NXOAuth2AccountStore sharedStore]
+                                                       queue:nil
+                                                  usingBlock:^(NSNotification *aNotification){
+                                                      
+                                                      if (aNotification.userInfo){
+                                                          NSLog(@"Success! We have an access token.");
+                                                      }
+                                                      else{
+                                                          //account removed, we lost access
+                                                      }
+                                                  }];
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:NXOAuth2AccountStoreDidFailToRequestAccessNotification
+                                                      object:[NXOAuth2AccountStore sharedStore]
+                                                       queue:nil
+                                                  usingBlock:^(NSNotification *aNotification){
+                                                      
+                                                      NSError *error = [aNotification.userInfo objectForKey:NXOAuth2AccountStoreErrorKey];
+                                                      NSLog(@"Error! %@", error.localizedDescription);
+                                                      
+                                                  }];
+}
+
+-(void)requestOAuth2Access
+{
+    [[NXOAuth2AccountStore sharedStore] requestAccessToAccountWithType:_applicationName
+                                   withPreparedAuthorizationURLHandler:^(NSURL *preparedURL){
+                                       
+                                       NSLog(@"Prepared auth url %@", preparedURL);
+                                       [[UIApplication sharedApplication] openURL:preparedURL];
+                                   }];
 }
 
 #pragma mark - Deep Linking

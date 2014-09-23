@@ -33,8 +33,8 @@
     if(self)
     {
         _product_id = [dictionary objectForKey:@"product_id"];
-        _description = [dictionary objectForKey:@"description"];
         _display_name = [dictionary objectForKey:@"display_name"];
+        _product_description = [dictionary objectForKey:@"description"];
         _capacity = [[dictionary objectForKey:@"capacity"] intValue];
         _image = [dictionary objectForKey:@"image"];
     }
