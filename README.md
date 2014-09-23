@@ -9,7 +9,7 @@ To add UberKit to your iOS app, add the UberKit folder to your project and `#imp
 
 <h2> Basic API Implementation </h2>
 
-This is to implement the Uber API without having users to sign in to their Uber account.
+This is to implement the Uber API without having users sign in to their Uber account.
 
 To implement UberKit, first initialize it with your server token
 
