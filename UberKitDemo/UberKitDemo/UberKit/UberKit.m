@@ -142,7 +142,7 @@ NSString * const mobile_safari_string = @"com.apple.mobilesafari";
         if(!jsonError)
         {
             _accessToken = [authDictionary objectForKey:@"access_token"];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"Token available" object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:UBER_ACCESS_TOKEN_AVAILABLE object:nil];
         }
         else
         {
