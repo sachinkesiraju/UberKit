@@ -14,7 +14,7 @@
 		<string>https://github.com/sachinkesiraju/UberKit.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>UberKitDemo/UberKitDemo.xcodeproj/project.xcworkspace</string>
+	<string>UberKitDemo/UberKitDemo.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>29CCB6789712444E3B50AD405650C59E2CCAC76D</key>
