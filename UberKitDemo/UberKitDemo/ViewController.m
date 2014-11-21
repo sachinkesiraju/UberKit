@@ -7,7 +7,6 @@
 //
 
 #import "ViewController.h"
-#import "UberKit.h"
 
 @interface ViewController ()
 
@@ -29,7 +28,8 @@
     [super viewDidLoad];
     
     UberKit *uberKit = [[UberKit alloc] initWithServerToken:@"YOUR_SERVER_TOKEN"]; //Add your server token
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(performActionsWithToken) name:@"UBER_ACCESS_TOKEN_AVAILABLE" object:nil];
+    //[[UberKit sharedInstance] initWithServerToken:@"YOUR_SERVER_TOKEN"]; //Alternate initialization
+    
     CLLocation *location = [[CLLocation alloc] initWithLatitude:37.7833 longitude:-122.4167];
     CLLocation *endLocation = [[CLLocation alloc] initWithLatitude:37.9 longitude:-122.43];
     
@@ -64,7 +64,7 @@
          if(!error)
          {
              UberPrice *price = [prices objectAtIndex:0];
-             NSLog(@"Price for first %@", price.estimate);
+             NSLog(@"Price for first %i", price.lowEstimate);
          }
          else
          {
@@ -75,21 +75,17 @@
 
 - (IBAction)login:(id)sender
 {
-    [[UberKit sharedInstance] setClientID:@"YOUR_CLIENT_ID"]; //Add your client id
-    [[UberKit sharedInstance] setClientSecret:@"YOUR_CLIENT_SECRET"]; //Add your client secret
-    [[UberKit sharedInstance] setRedirectURL:@"YOUR_REDIRECT_URL"]; //Add your redirect url
-    [[UberKit sharedInstance] setApplicationName:@"YOUR_APPLICATION_NAME"]; //Add your application name
-    [[UberKit sharedInstance] startLogin];
-    
-    //UberKit *uberKit = [[UberKit alloc] initWithClientID:@"YOUR_CLIENT_ID" ClientSecret:@"YOUR_CLIENT_SECRET" RedirectURL:@"YOUR_REDIRECT_URL" ApplicationName:@"YOUR_APPLICATION_NAME"];  // Alternate initialization
+    UberKit *uberKit = [[UberKit alloc] initWithClientID:@"YOUR_CLIENT_ID" ClientSecret:@"YOUR_CLIENT_SECRET" RedirectURL:@"YOUR_REDIRECT_URL" ApplicationName:@"YOUR_APPLICATION_NAME"]; // Alternate initialization
+    uberKit.delegate = self;
+    [uberKit startLogin];
 }
 
-- (void) performActionsWithToken
+- (void) uberKit:(UberKit *)uberKit didReceiveAccessToken:(NSString *)accessToken
 {
-    NSString *authToken = [[UberKit sharedInstance] getStoredAuthToken];
-    if(authToken)
+    NSLog(@"Received access token %@", accessToken);
+    if(accessToken)
     {
-        [[UberKit sharedInstance] getUserActivityWithCompletionHandler:^(NSArray *activities, NSURLResponse *response, NSError *error)
+        [uberKit getUserActivityWithCompletionHandler:^(NSArray *activities, NSURLResponse *response, NSError *error)
          {
              if(!error)
              {
@@ -103,7 +99,7 @@
              }
          }];
         
-        [[UberKit sharedInstance] getUserProfileWithCompletionHandler:^(UberProfile *profile, NSURLResponse *response, NSError *error)
+        [uberKit getUserProfileWithCompletionHandler:^(UberProfile *profile, NSURLResponse *response, NSError *error)
          {
              if(!error)
              {
@@ -117,8 +113,13 @@
     }
     else
     {
-        NSLog(@"No auth token yo, try again");
+        NSLog(@"No auth token, try again");
     }
+}
+
+- (void) uberKit:(UberKit *)uberKit loginFailedWithError:(NSError *)error
+{
+    NSLog(@"Error in login %@", error);
 }
 
 - (void)didReceiveMemoryWarning

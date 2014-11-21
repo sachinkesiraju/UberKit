@@ -16,18 +16,6 @@
     // Override point for customization after application launch.
     return YES;
 }
-
-- (BOOL) application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
-{
-    if([[UberKit sharedInstance] handleLoginRedirectFromUrl:url sourceApplication:sourceApplication])
-    {
-        return YES;
-    }
-    else
-    {
-        return NO;
-    }
-}
     
 - (void)applicationWillResignActive:(UIApplication *)application
 {
