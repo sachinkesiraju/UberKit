@@ -32,10 +32,19 @@
 #import "UberActivity.h"
 #import "UberProfile.h"
 
+@class UberKit;
+
+@protocol UberKitDelegate <NSObject>
+@optional
+- (void) uberKit: (UberKit *) uberKit didReceiveAccessToken: (NSString *) accessToken;
+- (void) uberKit: (UberKit *) uberKit loginFailedWithError: (NSError *) error;
+
+@end
+
 typedef void (^CompletionHandler) (NSArray *resultsArray, NSURLResponse *response, NSError *error);
 typedef void (^ProfileHandler) (UberProfile *profile, NSURLResponse *response, NSError *error);
 
-@interface UberKit : NSObject
+@interface UberKit : NSObject <UIWebViewDelegate>
 
 @property (strong, nonatomic) NSString *serverToken;
 @property (strong, nonatomic) NSString *clientID;
@@ -43,9 +52,9 @@ typedef void (^ProfileHandler) (UberProfile *profile, NSURLResponse *response, N
 @property (strong, nonatomic) NSString *redirectURL;
 @property (strong, nonatomic) NSString *applicationName;
 
-+ (UberKit *) sharedInstance;
+@property (weak, nonatomic) id <UberKitDelegate> delegate;
 
-- (BOOL)handleLoginRedirectFromUrl:(NSURL *)url sourceApplication:(NSString *)sourceApplication;
++ (UberKit *) sharedInstance;
 
 #pragma mark - Initialization
 

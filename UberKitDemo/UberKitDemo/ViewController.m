@@ -28,7 +28,7 @@
     [super viewDidLoad];
     
     UberKit *uberKit = [[UberKit alloc] initWithServerToken:@"YOUR_SERVER_TOKEN"]; //Add your server token
-    //[[UberKit sharedInstance] initWithServerToken:@"YOUR_SERVER_TOKEN"]; //Alternate initialization
+    //[[UberKit sharedInstance] setServerToken:@"YOUR_SERVER_TOKEN"]; //Alternate initialization
     
     CLLocation *location = [[CLLocation alloc] initWithLatitude:37.7833 longitude:-122.4167];
     CLLocation *endLocation = [[CLLocation alloc] initWithLatitude:37.9 longitude:-122.43];

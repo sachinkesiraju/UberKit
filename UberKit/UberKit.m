@@ -26,11 +26,11 @@
 #import "UberKit.h"
 
 static const NSString *baseURL = @"https://api.uber.com";
-NSString * const mobile_safari_string = @"com.apple.mobilesafari";
 
 @interface UberKit()
 
 @property (strong, nonatomic) NSString *accessToken;
+@property (strong, nonatomic) UIWebView *loginView;
 
 @end
 
@@ -84,8 +84,18 @@ NSString * const mobile_safari_string = @"com.apple.mobilesafari";
 
 - (void) startLogin
 {
+    [self setUpLoginView];
     [self setupOAuth2AccountStore];
     [self requestOAuth2Access];
+}
+
+- (void) setUpLoginView
+{
+    _loginView =[[UIWebView alloc] init];
+    _loginView.frame = [UIScreen mainScreen].bounds;
+    _loginView.delegate = self;
+    _loginView.scalesPageToFit = YES;
+    [[UIApplication sharedApplication].keyWindow addSubview:_loginView];
 }
 
 - (NSString *) getStoredAuthToken
@@ -93,12 +103,13 @@ NSString * const mobile_safari_string = @"com.apple.mobilesafari";
     return _accessToken;
 }
 
-- (BOOL) handleLoginRedirectFromUrl:(NSURL *)url sourceApplication:(NSString *)sourceApplication
+- (BOOL) webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
-    if ([sourceApplication isEqualToString:mobile_safari_string] && [url.absoluteURL.host hasPrefix:_redirectURL])
+    NSString *url = request.URL.absoluteString;
+    if ([url hasPrefix:self.redirectURL])
     {
         NSString *code = nil;
-        NSArray *urlParams = [[url query] componentsSeparatedByString:@"&"];
+        NSArray *urlParams = [request.URL.query componentsSeparatedByString:@"&"];
         for (NSString *param in urlParams) {
             NSArray *keyValue = [param componentsSeparatedByString:@"="];
             NSString *key = [keyValue objectAtIndex:0];
@@ -111,10 +122,11 @@ NSString * const mobile_safari_string = @"com.apple.mobilesafari";
             {
                 //Got the code, now retrieving the auth token
                 [self getAuthTokenForCode:code];
+                [_loginView removeFromSuperview];
             }
             else
             {
-                NSLog(@"There was an error returning from mobile safari");
+                NSLog(@"There was an error returning from the web view");
             }
             
             return NO;
@@ -122,6 +134,21 @@ NSString * const mobile_safari_string = @"com.apple.mobilesafari";
     }
     
     return YES;
+
+}
+
+- (void) webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
+{
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
+    if([self.delegate respondsToSelector:@selector(uberKit:loginFailedWithError:)])
+    {
+        [self.delegate uberKit:self loginFailedWithError:error];
+    }
+}
+
+- (void) webViewDidFinishLoad:(UIWebView *)webView
+{
+    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
 }
 
 - (void) getAuthTokenForCode: (NSString *) code
@@ -142,7 +169,13 @@ NSString * const mobile_safari_string = @"com.apple.mobilesafari";
         if(!jsonError)
         {
             _accessToken = [authDictionary objectForKey:@"access_token"];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"UBER_ACCESS_TOKEN_AVAILABLE" object:nil];
+            if(_accessToken)
+            {
+                if([self.delegate respondsToSelector:@selector(uberKit:didReceiveAccessToken:)])
+                {
+                    [self.delegate uberKit:self didReceiveAccessToken:_accessToken];
+                }
+            }
         }
         else
         {
@@ -190,6 +223,7 @@ NSString * const mobile_safari_string = @"com.apple.mobilesafari";
     // GET /v1/estimates/price
     
     NSString *url = [NSString stringWithFormat:@"%@/v1/estimates/price?server_token=%@&start_latitude=%f&start_longitude=%f&end_latitude=%f&end_longitude=%f", baseURL, _serverToken, startLocation.coordinate.latitude, startLocation.coordinate.longitude, endLocation.coordinate.latitude, endLocation.coordinate.longitude];
+    NSLog(@"url %@", url);
     [self performNetworkOperationWithURL:url completionHandler:^(NSDictionary *results, NSURLResponse *response, NSError *error)
      {
          if(!error)
@@ -315,10 +349,10 @@ NSString * const mobile_safari_string = @"com.apple.mobilesafari";
                                                   usingBlock:^(NSNotification *aNotification){
                                                       
                                                       if (aNotification.userInfo){
-                                                          NSLog(@"Success! We have an access token.");
+                                                          NSLog(@"Success! Received access token");
                                                       }
                                                       else{
-                                                          //account removed, we lost access
+                                                          NSLog(@"Account removed, lost access");
                                                       }
                                                   }];
     
@@ -337,9 +371,9 @@ NSString * const mobile_safari_string = @"com.apple.mobilesafari";
 {
     [[NXOAuth2AccountStore sharedStore] requestAccessToAccountWithType:_applicationName
                                    withPreparedAuthorizationURLHandler:^(NSURL *preparedURL){
-                                       
-                                       NSLog(@"Prepared auth url %@", preparedURL);
-                                       [[UIApplication sharedApplication] openURL:preparedURL];
+
+                                       [_loginView loadRequest:[NSURLRequest requestWithURL:preparedURL]];
+                                       [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
                                    }];
 }
 
