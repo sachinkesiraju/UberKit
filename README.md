@@ -83,6 +83,8 @@ The authorization process is implemented by:
 
 UberKit automatically opens a web view within your app through which the users enter their Uber login credentials to allow access to their profiles. 
 
+<img src = "https://github.com/sachinkesiraju/UberKit/blob/master/Login%20screenshot.png" width = "320px">
+
 <h3> Implementation </h3>
 
 Before you can get started using UberKit with login parameters, you must first create an Uber application at <a href = http://developer.uber.com> Uber Developers </a> and fill in all necessary fields.
