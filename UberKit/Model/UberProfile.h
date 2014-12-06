@@ -15,6 +15,7 @@
 @property (nonatomic) NSString *email;
 @property (nonatomic) NSString *picture;
 @property (nonatomic) NSString *promo_code;
+@property (nonatomic) NSString *uuid;
 
 - (instancetype) initWithDictionary: (NSDictionary *) dictionary;
 

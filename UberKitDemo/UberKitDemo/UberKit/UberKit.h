@@ -25,12 +25,12 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
-#import "NXOAuth2.h"
-#import "UberProduct.h"
-#import "UberPrice.h"
-#import "UberTime.h"
-#import "UberActivity.h"
-#import "UberProfile.h"
+#import "OAuth2Client/NXOAuth2.h"
+#import "Model/UberProduct.h"
+#import "Model/UberPrice.h"
+#import "Model/UberTime.h"
+#import "Model/UberActivity.h"
+#import "Model/UberProfile.h"
 
 @class UberKit;
 
