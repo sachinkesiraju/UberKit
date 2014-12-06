@@ -68,6 +68,22 @@ To get the price for a trip between two locations
          }
      }];
 ```
+
+To get the available promotion for a trip between two locations
+```
+[uberKit getPromotionForLocation:location endLocation:endLocation withCompletionHandler:^(UberPromotion *promotion, NSURLResponse *response, NSError *error)
+     {
+        if(!error)
+        {
+            //Got the promotion as an UberPromotion
+        }
+        else
+        {
+            NSLog(@"Error %@", error);
+        }
+     }];
+```
+
 <h2> OAuth implementation </h2>
 
 <h3> Introduction </h3>
