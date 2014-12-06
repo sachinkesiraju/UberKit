@@ -223,7 +223,6 @@ static const NSString *baseURL = @"https://api.uber.com";
     // GET /v1/estimates/price
     
     NSString *url = [NSString stringWithFormat:@"%@/v1/estimates/price?server_token=%@&start_latitude=%f&start_longitude=%f&end_latitude=%f&end_longitude=%f", baseURL, _serverToken, startLocation.coordinate.latitude, startLocation.coordinate.longitude, endLocation.coordinate.latitude, endLocation.coordinate.longitude];
-    NSLog(@"url %@", url);
     [self performNetworkOperationWithURL:url completionHandler:^(NSDictionary *results, NSURLResponse *response, NSError *error)
      {
          if(!error)
@@ -272,6 +271,25 @@ static const NSString *baseURL = @"https://api.uber.com";
          {
              NSLog(@"Error %@", error);
              completion(nil, response, error);
+         }
+     }];
+}
+
+#pragma mark - Promotion Estimates
+
+- (void) getPromotionForLocation:(CLLocation *)startLocation endLocation:(CLLocation *)endLocation withCompletionHandler:(PromotionHandler)handler
+{
+    NSString *url = [NSString stringWithFormat:@"%@/v1/promotions?server_token=%@&start_latitude=%f&start_longitude=%f&end_latitude=%f&end_longitude=%f", baseURL, _serverToken, startLocation.coordinate.latitude, startLocation.coordinate.longitude, endLocation.coordinate.latitude, endLocation.coordinate.longitude];
+    [self performNetworkOperationWithURL:url completionHandler:^(NSDictionary *promotionDictionary, NSURLResponse *response, NSError *error)
+     {
+         if(!error)
+         {
+             UberPromotion *promotion = [[UberPromotion alloc] initWithDictionary:promotionDictionary];
+             handler(promotion, response, error);
+         }
+         else
+         {
+             handler(nil, response, error);
          }
      }];
 }

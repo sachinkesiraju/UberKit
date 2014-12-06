@@ -71,6 +71,18 @@
              NSLog(@"Error %@", error);
          }
      }];
+    
+    [uberKit getPromotionForLocation:location endLocation:endLocation withCompletionHandler:^(UberPromotion *promotion, NSURLResponse *response, NSError *error)
+     {
+        if(!error)
+        {
+            NSLog(@"Promotion - %@", promotion.localized_value);
+        }
+        else
+        {
+            NSLog(@"Error %@", error);
+        }
+     }];
 }
 
 - (IBAction)login:(id)sender

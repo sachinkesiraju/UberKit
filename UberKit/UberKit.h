@@ -31,6 +31,7 @@
 #import "Model/UberTime.h"
 #import "Model/UberActivity.h"
 #import "Model/UberProfile.h"
+#import "Model/UberPromotion.h"
 
 @class UberKit;
 
@@ -43,6 +44,7 @@
 
 typedef void (^CompletionHandler) (NSArray *resultsArray, NSURLResponse *response, NSError *error);
 typedef void (^ProfileHandler) (UberProfile *profile, NSURLResponse *response, NSError *error);
+typedef void (^PromotionHandler) (UberPromotion *promotion, NSURLResponse *response, NSError *error);
 
 @interface UberKit : NSObject <UIWebViewDelegate>
 
@@ -77,6 +79,10 @@ typedef void (^ProfileHandler) (UberProfile *profile, NSURLResponse *response, N
 #pragma mark - Time Estimates
 
 - (void) getTimeForProductArrivalWithLocation: (CLLocation *) location withCompletionHandler: (CompletionHandler) completion;
+
+#pragma mark - Promotion Estimates
+
+- (void) getPromotionForLocation: (CLLocation *) startLocation endLocation: (CLLocation *) endLocation withCompletionHandler: (PromotionHandler) handler;
 
 #pragma mark - User Activity
 

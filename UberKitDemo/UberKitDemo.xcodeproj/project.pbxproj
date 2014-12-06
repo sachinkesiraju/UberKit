@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		030FB7691A3352580002363C /* UberPromotion.m in Sources */ = {isa = PBXBuildFile; fileRef = 030FB7681A3352580002363C /* UberPromotion.m */; };
 		038FC3B919A62A6F004CB198 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 038FC3B819A62A6F004CB198 /* Foundation.framework */; };
 		038FC3BB19A62A6F004CB198 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 038FC3BA19A62A6F004CB198 /* CoreGraphics.framework */; };
 		038FC3BD19A62A6F004CB198 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 038FC3BC19A62A6F004CB198 /* UIKit.framework */; };
@@ -53,6 +54,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		030FB7671A3352580002363C /* UberPromotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UberPromotion.h; sourceTree = "<group>"; };
+		030FB7681A3352580002363C /* UberPromotion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UberPromotion.m; sourceTree = "<group>"; };
 		038FC3B519A62A6F004CB198 /* UberKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UberKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		038FC3B819A62A6F004CB198 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		038FC3BA19A62A6F004CB198 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -242,6 +245,8 @@
 				03C118DC19CEE43300CEAF18 /* UberActivity.m */,
 				03C118DE19CEFC6D00CEAF18 /* UberProfile.h */,
 				03C118DF19CEFC6D00CEAF18 /* UberProfile.m */,
+				030FB7671A3352580002363C /* UberPromotion.h */,
+				030FB7681A3352580002363C /* UberPromotion.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -401,6 +406,7 @@
 				038FC3C919A62A6F004CB198 /* UberKitDemoAppDelegate.m in Sources */,
 				03C118DA19CEE03800CEAF18 /* NXOAuth2Request.m in Sources */,
 				038FC3FD19A62B23004CB198 /* UberKit.m in Sources */,
+				030FB7691A3352580002363C /* UberPromotion.m in Sources */,
 				038FC3C519A62A6F004CB198 /* main.m in Sources */,
 				03C118D219CEE03800CEAF18 /* NXOAuth2Account.m in Sources */,
 				03C118D919CEE03800CEAF18 /* NXOAuth2PostBodyStream.m in Sources */,
