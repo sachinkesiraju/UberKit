@@ -35,6 +35,8 @@
 @property (nonatomic) int lowEstimate;
 @property (nonatomic) int highEstimate;
 @property (nonatomic) float surgeMultiplier;
+@property (nonatomic) int duration;
+@property (nonatomic) float distance;
 
 - (instancetype) initWithDictionary: (NSDictionary *) dictionary;
 

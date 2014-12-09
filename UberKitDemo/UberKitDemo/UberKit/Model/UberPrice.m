@@ -46,6 +46,8 @@
         if ( ![highE isKindOfClass:[NSNull class]] )
             _highEstimate = [highE intValue];
         _surgeMultiplier = [[dictionary objectForKey:@"surge_multiplier"] floatValue];
+        _duration = [[dictionary objectForKey:@"duration" ] intValue];
+        _distance = [[dictionary objectForKey:@"distance"] floatValue];
     }
     
     return self;
