@@ -25,12 +25,13 @@
 
 #import "UberKit.h"
 
-static const NSString *baseURL = @"https://api.uber.com";
+static const NSString *baseURL = @"https://api.uber.com/v1";
 
 @interface UberKit()
 
 @property (strong, nonatomic) NSString *accessToken;
 @property (strong, nonatomic) UIWebView *loginView;
+@property (strong, nonatomic) UIViewController *loginController;
 
 @end
 
@@ -82,8 +83,9 @@ static const NSString *baseURL = @"https://api.uber.com";
 
 #pragma mark - Login
 
-- (void) startLogin
+- (void) startLoginWithViewController:(UIViewController *)viewController
 {
+    _loginController = viewController;
     [self setUpLoginView];
     [self setupOAuth2AccountStore];
     [self requestOAuth2Access];
@@ -95,7 +97,7 @@ static const NSString *baseURL = @"https://api.uber.com";
     _loginView.frame = [UIScreen mainScreen].bounds;
     _loginView.delegate = self;
     _loginView.scalesPageToFit = YES;
-    [[UIApplication sharedApplication].keyWindow addSubview:_loginView];
+    [_loginController.view addSubview:_loginView];
 }
 
 - (NSString *) getStoredAuthToken
@@ -115,26 +117,28 @@ static const NSString *baseURL = @"https://api.uber.com";
             NSString *key = [keyValue objectAtIndex:0];
             if ([key isEqualToString:@"code"])
             {
-                code = [keyValue objectAtIndex:1]; //retrieving the code
-                NSLog(@"%@", code);
-            }
-            if (code)
-            {
-                //Got the code, now retrieving the auth token
-                [self getAuthTokenForCode:code];
-                [_loginView removeFromSuperview];
+                if ([keyValue objectAtIndex:1])
+                {
+                    code = [keyValue objectAtIndex:1]; //retrieving the code
+                    NSLog(@"Got code %@", code);
+                    //Got the code, now retrieving the auth token
+                    [self getAuthTokenForCode:code];
+                    [_loginView removeFromSuperview];
+                }
+                else
+                {
+                    NSLog(@"There was an error returning from the web view");
+                }
             }
             else
             {
-                NSLog(@"There was an error returning from the web view");
+                NSLog(@"Could not find code from redirect");
             }
-            
             return NO;
         }
     }
     
     return YES;
-
 }
 
 - (void) webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
@@ -194,7 +198,7 @@ static const NSString *baseURL = @"https://api.uber.com";
 {
     // GET/v1/products
     
-    NSString *url = [NSString stringWithFormat:@"%@/v1/products?server_token=%@&latitude=%f&longitude=%f", baseURL, _serverToken, location.coordinate.latitude, location.coordinate.longitude];
+    NSString *url = [NSString stringWithFormat:@"%@/products?server_token=%@&latitude=%f&longitude=%f", baseURL, _serverToken, location.coordinate.latitude, location.coordinate.longitude];
     [self performNetworkOperationWithURL:url completionHandler:^(NSDictionary *results, NSURLResponse *response, NSError *error)
      {
          if(!error)
@@ -222,7 +226,7 @@ static const NSString *baseURL = @"https://api.uber.com";
 {
     // GET /v1/estimates/price
     
-    NSString *url = [NSString stringWithFormat:@"%@/v1/estimates/price?server_token=%@&start_latitude=%f&start_longitude=%f&end_latitude=%f&end_longitude=%f", baseURL, _serverToken, startLocation.coordinate.latitude, startLocation.coordinate.longitude, endLocation.coordinate.latitude, endLocation.coordinate.longitude];
+    NSString *url = [NSString stringWithFormat:@"%@/estimates/price?server_token=%@&start_latitude=%f&start_longitude=%f&end_latitude=%f&end_longitude=%f", baseURL, _serverToken, startLocation.coordinate.latitude, startLocation.coordinate.longitude, endLocation.coordinate.latitude, endLocation.coordinate.longitude];
     [self performNetworkOperationWithURL:url completionHandler:^(NSDictionary *results, NSURLResponse *response, NSError *error)
      {
          if(!error)
@@ -253,7 +257,7 @@ static const NSString *baseURL = @"https://api.uber.com";
 {
     //GET /v1/estimates/time
     
-    NSString *url = [NSString stringWithFormat:@"%@/v1/estimates/time?server_token=%@&start_latitude=%f&start_longitude=%f", baseURL, _serverToken, location.coordinate.latitude, location.coordinate.longitude];
+    NSString *url = [NSString stringWithFormat:@"%@/estimates/time?server_token=%@&start_latitude=%f&start_longitude=%f", baseURL, _serverToken, location.coordinate.latitude, location.coordinate.longitude];
     [self performNetworkOperationWithURL:url completionHandler:^(NSDictionary *results, NSURLResponse *response, NSError *error)
      {
          if(!error)
@@ -279,7 +283,7 @@ static const NSString *baseURL = @"https://api.uber.com";
 
 - (void) getPromotionForLocation:(CLLocation *)startLocation endLocation:(CLLocation *)endLocation withCompletionHandler:(PromotionHandler)handler
 {
-    NSString *url = [NSString stringWithFormat:@"%@/v1/promotions?server_token=%@&start_latitude=%f&start_longitude=%f&end_latitude=%f&end_longitude=%f", baseURL, _serverToken, startLocation.coordinate.latitude, startLocation.coordinate.longitude, endLocation.coordinate.latitude, endLocation.coordinate.longitude];
+    NSString *url = [NSString stringWithFormat:@"%@/promotions?server_token=%@&start_latitude=%f&start_longitude=%f&end_latitude=%f&end_longitude=%f", baseURL, _serverToken, startLocation.coordinate.latitude, startLocation.coordinate.longitude, endLocation.coordinate.latitude, endLocation.coordinate.longitude];
     [self performNetworkOperationWithURL:url completionHandler:^(NSDictionary *promotionDictionary, NSURLResponse *response, NSError *error)
      {
          if(!error)
@@ -333,7 +337,7 @@ static const NSString *baseURL = @"https://api.uber.com";
 {
     //GET /v1/me
     
-    NSString *url = [NSString stringWithFormat:@"https://api.uber.com/v1/me?access_token=%@", _accessToken];
+    NSString *url = [NSString stringWithFormat:@"%@/me?access_token=%@", baseURL, _accessToken];
     [self performNetworkOperationWithURL:url completionHandler:^(NSDictionary *profileDictionary, NSURLResponse *response, NSError *error)
      {
          if(profileDictionary)

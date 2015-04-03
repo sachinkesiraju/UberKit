@@ -87,9 +87,9 @@
 
 - (IBAction)login:(id)sender
 {
-    UberKit *uberKit = [[UberKit alloc] initWithClientID:@"YOUR_CLIENT_ID" ClientSecret:@"YOUR_CLIENT_SECRET" RedirectURL:@"YOUR_REDIRECT_URL" ApplicationName:@"YOUR_APPLICATION_NAME"]; // Alternate initialization
+    UberKit *uberKit = [[UberKit alloc] initWithClientID:@"YOUR_CLIENTID" ClientSecret:@"YOUR_CLIENT_SECRET" RedirectURL:@"YOUR_REDIRECT_URI" ApplicationName:@"YOUR_APPLICATION_NAME"]; // Alternate initialization
     uberKit.delegate = self;
-    [uberKit startLogin];
+    [uberKit startLoginWithViewController:self];
 }
 
 - (void) uberKit:(UberKit *)uberKit didReceiveAccessToken:(NSString *)accessToken
