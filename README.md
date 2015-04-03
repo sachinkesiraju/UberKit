@@ -132,7 +132,7 @@ Add the UberKit delegate to the @interface of your view controller to detect whe
 ```
 You can also retrieve the access token when it is available by using `NSString *token = [[UberKit sharedInstance] getStoredAuthToken];`
 
-To begin the login process, call the method 'startLogin' by using `[uberKit startLogin];`
+To begin the login process, call the method 'startLogin' by passing your view controller using `[uberKit startLoginWithViewController:self];`
 
 Once you've successfully retrieved an access token, you can then make the following calls to the Uber API :
 
