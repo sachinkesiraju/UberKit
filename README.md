@@ -170,6 +170,16 @@ For more help, check out the <a href = https://github.com/sachinkesiraju/UberKit
 
 For any assistance, reach out to me on Twitter <a href = https://twitter.com/sachinkesiraju> @sachinkesiraju </a>
 
+<h2> Featured In </h2>
+
+- <a href = http://blindsquare.com/>Blindsquare </a>
+
+Let me know where you use UberKit so I can add it here!
+
+<h2> Community </h2>
+
+If you feel that you can contribute to improving UberKit or add a new feature, feel free to raise an issue/submit a PR.
+
 <h2> License </h2>
 
 UberKit is available under the MIT License. See the <a href = https://github.com/sachinkesiraju/UberKit/blob/master/LICENSE>LICENSE</a> for more information.
