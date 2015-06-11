@@ -26,7 +26,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [self callCientAuthenticationMethods];
+}
+
+- (void) callCientAuthenticationMethods
+{
     UberKit *uberKit = [[UberKit alloc] initWithServerToken:@"YOUR_SERVER_TOKEN"]; //Add your server token
     //[[UberKit sharedInstance] setServerToken:@"YOUR_SERVER_TOKEN"]; //Alternate initialization
     
@@ -74,22 +78,27 @@
     
     [uberKit getPromotionForLocation:location endLocation:endLocation withCompletionHandler:^(UberPromotion *promotion, NSURLResponse *response, NSError *error)
      {
-        if(!error)
-        {
-            NSLog(@"Promotion - %@", promotion.localized_value);
-        }
-        else
-        {
-            NSLog(@"Error %@", error);
-        }
+         if(!error)
+         {
+             NSLog(@"Promotion - %@", promotion.localized_value);
+         }
+         else
+         {
+             NSLog(@"Error %@", error);
+         }
      }];
 }
 
 - (IBAction)login:(id)sender
 {
-    UberKit *uberKit = [[UberKit alloc] initWithClientID:@"YOUR_CLIENTID" ClientSecret:@"YOUR_CLIENT_SECRET" RedirectURL:@"YOUR_REDIRECT_URI" ApplicationName:@"YOUR_APPLICATION_NAME"]; // Alternate initialization
+    [[UberKit sharedInstance] setClientID:@"YOUR_CLIENTID"];
+    [[UberKit sharedInstance] setClientSecret:@"YOUR_CLIENT_SECRET"];
+    [[UberKit sharedInstance] setRedirectURL:@"YOUR_REDIRECT_URI"];
+    [[UberKit sharedInstance] setApplicationName:@"YOUR_APPLICATION_NAME"];
+    //UberKit *uberKit = [[UberKit alloc] initWithClientID:@"YOUR_CLIENTID" ClientSecret:@"YOUR_CLIENT_SECRET" RedirectURL:@"YOUR_REDIRECT_URI" ApplicationName:@"YOUR_APPLICATION_NAME"]; // Alternate initialization
+    UberKit *uberKit = [UberKit sharedInstance];
     uberKit.delegate = self;
-    [uberKit startLoginWithViewController:self];
+    [uberKit startLogin];
 }
 
 - (void) uberKit:(UberKit *)uberKit didReceiveAccessToken:(NSString *)accessToken

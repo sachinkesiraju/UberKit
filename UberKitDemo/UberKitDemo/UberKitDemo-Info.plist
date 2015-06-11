@@ -23,14 +23,14 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>com.sachinkesiraju.uberkit</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>myurlscheme</string>
+				<string>uberkit</string>
 			</array>
-		</dict>
-		<dict>
-			<key>CFBundleURLName</key>
-			<string>uberkitredirect</string>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>

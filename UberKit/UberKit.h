@@ -63,9 +63,11 @@ typedef void (^PromotionHandler) (UberPromotion *promotion, NSURLResponse *respo
 - (instancetype) initWithServerToken: (NSString *) serverToken;
 - (instancetype) initWithClientID: (NSString *) clientId ClientSecret: (NSString *) clientSecret RedirectURL: (NSString *) redirectURL ApplicationName: (NSString *) applicationName;
 
+- (BOOL)handleLoginRedirectFromUrl:(NSURL *)url sourceApplication:(NSString *)sourceApplication;
+
 #pragma mark - Login
 
-- (void) startLoginWithViewController: (UIViewController *) viewController;
+- (void) startLogin;
 - (NSString *) getStoredAuthToken;
 
 #pragma mark - Product Types

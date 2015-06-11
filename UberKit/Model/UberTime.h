@@ -28,7 +28,7 @@
 @interface UberTime : NSObject
 
 @property (nonatomic) NSString *productID;
-@property (nonatomic) int displayName;
+@property (nonatomic) NSString *displayName;
 @property (nonatomic) float estimate;
 
 - (instancetype) initWithDictionary: (NSDictionary *) dictionary;

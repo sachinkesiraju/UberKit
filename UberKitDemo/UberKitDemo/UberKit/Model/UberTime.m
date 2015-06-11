@@ -34,7 +34,7 @@
     if(self)
     {
         _productID = [dictionary objectForKey:@"product_id"];
-        _displayName = [[dictionary objectForKey:@"display_name"] intValue];
+        _displayName = [dictionary objectForKey:@"display_name"];
         _estimate = [[dictionary objectForKey:@"estimate"] floatValue];
     }
     

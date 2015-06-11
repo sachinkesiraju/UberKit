@@ -25,13 +25,12 @@
 
 #import "UberKit.h"
 
-static const NSString *baseURL = @"https://api.uber.com/v1";
+NSString * const baseURL = @"https://api.uber.com/v1";
+NSString * const mobile_safari_string = @"com.apple.mobilesafari";
 
 @interface UberKit()
 
 @property (strong, nonatomic) NSString *accessToken;
-@property (strong, nonatomic) UIWebView *loginView;
-@property (strong, nonatomic) UIViewController *loginController;
 
 @end
 
@@ -83,113 +82,15 @@ static const NSString *baseURL = @"https://api.uber.com/v1";
 
 #pragma mark - Login
 
-- (void) startLoginWithViewController:(UIViewController *)viewController
+- (void) startLogin
 {
-    _loginController = viewController;
-    [self setUpLoginView];
     [self setupOAuth2AccountStore];
     [self requestOAuth2Access];
-}
-
-- (void) setUpLoginView
-{
-    _loginView =[[UIWebView alloc] init];
-    _loginView.frame = [UIScreen mainScreen].bounds;
-    _loginView.delegate = self;
-    _loginView.scalesPageToFit = YES;
-    [_loginController.view addSubview:_loginView];
 }
 
 - (NSString *) getStoredAuthToken
 {
     return _accessToken;
-}
-
-- (BOOL) webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
-{
-    NSString *url = request.URL.absoluteString;
-    if ([url hasPrefix:self.redirectURL])
-    {
-        NSString *code = nil;
-        NSArray *urlParams = [request.URL.query componentsSeparatedByString:@"&"];
-        for (NSString *param in urlParams) {
-            NSArray *keyValue = [param componentsSeparatedByString:@"="];
-            NSString *key = [keyValue objectAtIndex:0];
-            if ([key isEqualToString:@"code"])
-            {
-                if ([keyValue objectAtIndex:1])
-                {
-                    code = [keyValue objectAtIndex:1]; //retrieving the code
-                    NSLog(@"Got code %@", code);
-                    //Got the code, now retrieving the auth token
-                    [self getAuthTokenForCode:code];
-                    [_loginView removeFromSuperview];
-                }
-                else
-                {
-                    NSLog(@"There was an error returning from the web view");
-                }
-            }
-            else
-            {
-                NSLog(@"Could not find code from redirect");
-            }
-            return NO;
-        }
-    }
-    
-    return YES;
-}
-
-- (void) webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
-{
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-    if([self.delegate respondsToSelector:@selector(uberKit:loginFailedWithError:)])
-    {
-        [self.delegate uberKit:self loginFailedWithError:error];
-    }
-}
-
-- (void) webViewDidFinishLoad:(UIWebView *)webView
-{
-    [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:NO];
-}
-
-- (void) getAuthTokenForCode: (NSString *) code
-{
-    NSString *data = [NSString stringWithFormat:@"code=%@&client_id=%@&client_secret=%@&redirect_uri=%@&grant_type=authorization_code", code, _clientID, _clientSecret, _redirectURL];
-    NSString *url = [NSString stringWithFormat:@"https://login.uber.com/oauth/token"];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
-    [request setHTTPMethod:@"POST"];
-    [request setHTTPBody:[data dataUsingEncoding:NSUTF8StringEncoding]];
-    
-    NSURLResponse *response = nil;
-    NSError *error = nil;
-    NSData *authData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    if(!error)
-    {
-        NSError *jsonError = nil;
-        NSDictionary *authDictionary = [NSJSONSerialization JSONObjectWithData:authData options:0 error:&jsonError];
-        if(!jsonError)
-        {
-            _accessToken = [authDictionary objectForKey:@"access_token"];
-            if(_accessToken)
-            {
-                if([self.delegate respondsToSelector:@selector(uberKit:didReceiveAccessToken:)])
-                {
-                    [self.delegate uberKit:self didReceiveAccessToken:_accessToken];
-                }
-            }
-        }
-        else
-        {
-            NSLog(@"Error retrieving access token %@", jsonError);
-        }
-    }
-    else
-    {
-        NSLog(@"Error in sending request for access token %@", error);
-    }
 }
 
 #pragma mark - Product Types
@@ -352,6 +253,76 @@ static const NSString *baseURL = @"https://api.uber.com/v1";
      }];
 }
 
+#pragma mark - Login flow
+
+- (BOOL) handleLoginRedirectFromUrl:(NSURL *)url sourceApplication:(NSString *)sourceApplication
+{
+    if ([sourceApplication isEqualToString:mobile_safari_string] && [url.absoluteURL.host hasPrefix:_redirectURL])
+    {
+        NSString *code = nil;
+        NSArray *urlParams = [[url query] componentsSeparatedByString:@"&"];
+        for (NSString *param in urlParams) {
+            NSArray *keyValue = [param componentsSeparatedByString:@"="];
+            NSString *key = [keyValue objectAtIndex:0];
+            if ([key isEqualToString:@"code"])
+            {
+                code = [keyValue objectAtIndex:1]; //retrieving the code
+                NSLog(@"%@", code);
+            }
+            if (code)
+            {
+                //Got the code, now retrieving the auth token
+                [self getAuthTokenForCode:code];
+            }
+            else
+            {
+                NSLog(@"There was an error returning from mobile safari");
+            }
+            
+            return NO;
+        }
+    }
+    
+    return YES;
+}
+
+- (void) getAuthTokenForCode: (NSString *) code
+{
+    NSString *data = [NSString stringWithFormat:@"code=%@&client_id=%@&client_secret=%@&redirect_uri=%@&grant_type=authorization_code", code, _clientID, _clientSecret, _redirectURL];
+    NSString *url = [NSString stringWithFormat:@"https://login.uber.com/oauth/token"];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:[data dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    NSURLResponse *response = nil;
+    NSError *error = nil;
+    NSData *authData = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    if(!error)
+    {
+        NSError *jsonError = nil;
+        NSDictionary *authDictionary = [NSJSONSerialization JSONObjectWithData:authData options:0 error:&jsonError];
+        if(!jsonError)
+        {
+            _accessToken = [authDictionary objectForKey:@"access_token"];
+            if(_accessToken)
+            {
+                if([self.delegate respondsToSelector:@selector(uberKit:didReceiveAccessToken:)])
+                {
+                    [self.delegate uberKit:self didReceiveAccessToken:_accessToken];
+                }
+            }
+        }
+        else
+        {
+            NSLog(@"Error retrieving access token %@", jsonError);
+        }
+    }
+    else
+    {
+        NSLog(@"Error in sending request for access token %@", error);
+    }
+}
+
 #pragma mark - OAuth
 
 - (void)setupOAuth2AccountStore
@@ -394,7 +365,7 @@ static const NSString *baseURL = @"https://api.uber.com/v1";
     [[NXOAuth2AccountStore sharedStore] requestAccessToAccountWithType:_applicationName
                                    withPreparedAuthorizationURLHandler:^(NSURL *preparedURL){
 
-                                       [_loginView loadRequest:[NSURLRequest requestWithURL:preparedURL]];
+                                       [[UIApplication sharedApplication] openURL:preparedURL];
                                        [[UIApplication sharedApplication] setNetworkActivityIndicatorVisible:YES];
                                    }];
 }
