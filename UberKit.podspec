@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
 s.name             = "UberKit"
-s.version          = "0.1.1"
+s.version          = "0.2"
 s.summary          = "A simple, easy-to-use Objective C wrapper for the Uber API."
 s.homepage         = "https://github.com/sachinkesiraju/UberKit"
 s.license          = { :type => 'MIT', :text => 'Copyright 2014 Sachin Kesiraju' }
