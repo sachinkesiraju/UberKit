@@ -102,7 +102,7 @@ The authorization process is implemented by:
 
 3. Using this access token to make calls to the Uber API.
 
-UberKit automatically opens a web view within your app through which the users enter their Uber login credentials to allow access to their profiles. 
+UberKit automatically redirects to Safari where users enter their Uber login credentials to allow access to their profiles. 
 
 <img src = "https://github.com/sachinkesiraju/UberKit/blob/master/Login%20screenshot.png" width = "320px">
 
@@ -132,7 +132,7 @@ Add the UberKit delegate to the @interface of your view controller to detect whe
 ```
 You can also retrieve the access token when it is available by using `NSString *token = [[UberKit sharedInstance] getStoredAuthToken];`
 
-To begin the login process, call the method 'startLogin' by passing your view controller using `[uberKit startLoginWithViewController:self];`
+To begin the login process, call the method 'startLogin' using `[uberKit startLogin];`
 
 Once you've successfully retrieved an access token, you can then make the following calls to the Uber API :
 
