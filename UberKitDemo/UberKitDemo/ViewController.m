@@ -26,10 +26,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self callCientAuthenticationMethods];
+    [self callClientAuthenticationMethods];
 }
 
-- (void) callCientAuthenticationMethods
+- (void) callClientAuthenticationMethods
 {
     UberKit *uberKit = [[UberKit alloc] initWithServerToken:@"YOUR_SERVER_TOKEN"]; //Add your server token
     //[[UberKit sharedInstance] setServerToken:@"YOUR_SERVER_TOKEN"]; //Alternate initialization
