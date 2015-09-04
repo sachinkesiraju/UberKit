@@ -42,9 +42,9 @@
 
 @end
 
-typedef void (^CompletionHandler) (NSArray *resultsArray, NSURLResponse *response, NSError *error);
-typedef void (^ProfileHandler) (UberProfile *profile, NSURLResponse *response, NSError *error);
-typedef void (^PromotionHandler) (UberPromotion *promotion, NSURLResponse *response, NSError *error);
+typedef void (^CompletionHandler) (NSArray *resultsArray, NSError *error);
+typedef void (^ProfileHandler) (UberProfile *profile, NSError *error);
+typedef void (^PromotionHandler) (UberPromotion *promotion, NSError *error);
 
 @interface UberKit : NSObject <UIWebViewDelegate>
 
