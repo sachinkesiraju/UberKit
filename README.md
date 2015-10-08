@@ -16,14 +16,14 @@ Alternatively, you can always just drag and drop the folder 'UberKit' into your 
 
 This is to implement the Uber API without having users sign in to their Uber account.
 
-To implement UberKit, first initialize it with your server token
+To implement UberKit, first initialize it with your server token.
 
-You can get your server token from <a href = http://developer.uber.com> Uber Developers </a>
+You can get your server token from <a href = http://developer.uber.com> Uber Developers</a>.
 
 ```objc
   UberKit *uberKit = [[UberKit alloc] initWithServerToken:@"YOUR_SERVER_TOKEN"];
 ```
-Alternatively, you can set your server token to an instance of UberKit as follows:
+Alternatively, you can set your server token to a shared instance of UberKit as follows:
 ```objc
     [[UberKit sharedInstance] setServerToken:@"YOUR_SERVER_TOKEN"];
 ```
@@ -31,7 +31,7 @@ Alternatively, you can set your server token to an instance of UberKit as follow
 To get all products available from a particular location
 
 ```objc
- [uberKit getProductsForLocation:location withCompletionHandler:^(NSArray *products, NSURLResponse *response, NSError *error)
+ [uberKit getProductsForLocation:location withCompletionHandler:^(NSArray *products, NSError *error)
      {
          if(!error)
          {
@@ -46,7 +46,7 @@ To get all products available from a particular location
 
 To get the time for arrival of a product to a particular location
 ```objc
-[uberKit getTimeForProductArrivalWithLocation:location withCompletionHandler:^(NSArray *times, NSURLResponse *response, NSError *error)
+[uberKit getTimeForProductArrivalWithLocation:location withCompletionHandler:^(NSArray *times, NSError *error)
      {
          if(!error)
          {
@@ -61,7 +61,7 @@ To get the time for arrival of a product to a particular location
 
 To get the price for a trip between two locations
 ```objc
-[uberKit getPriceForTripWithStartLocation:location endLocation:endLocation  withCompletionHandler:^(NSArray *prices, NSURLResponse *response, NSError *error)
+[uberKit getPriceForTripWithStartLocation:location endLocation:endLocation  withCompletionHandler:^(NSArray *prices,  NSError *error)
      {
          if(!error)
          {
@@ -76,7 +76,7 @@ To get the price for a trip between two locations
 
 To get the available promotion for a trip between two locations
 ```objc
-[uberKit getPromotionForLocation:location endLocation:endLocation withCompletionHandler:^(UberPromotion *promotion, NSURLResponse *response, NSError *error)
+[uberKit getPromotionForLocation:location endLocation:endLocation withCompletionHandler:^(UberPromotion *promotion,  NSError *error)
      {
         if(!error)
         {
@@ -138,7 +138,7 @@ Once you've successfully retrieved an access token, you can then make the follow
 
 To get all activity by the user
 ```objc
-[uberKit getUserActivityWithCompletionHandler:^(NSArray *activities, NSURLResponse *response, NSError *error)
+[uberKit getUserActivityWithCompletionHandler:^(NSArray *activities, NSError *error)
          {
              if(!error)
              {
@@ -153,7 +153,7 @@ To get all activity by the user
 
 To get the profile of the user
 ```objc
-[uberKit getUserProfileWithCompletionHandler:^(UberProfile *profile, NSURLResponse *response, NSError *error)
+[uberKit getUserProfileWithCompletionHandler:^(UberProfile *profile, NSError *error)
          {
              if(!error)
              {
