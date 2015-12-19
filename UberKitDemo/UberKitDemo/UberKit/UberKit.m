@@ -98,12 +98,12 @@ NSString * const mobile_safari_string = @"com.apple.mobilesafari";
                  UberProduct *product = [[UberProduct alloc] initWithDictionary:[products objectAtIndex:i]];
                  [availableProducts addObject:product];
              }
-             completion(availableProducts, error);
+             completion(availableProducts, response,  error);
          }
          else
          {
              NSLog(@"Error %@", error);
-             completion(nil, error);
+             completion(nil, response, error);
          }
      }];
 }
@@ -129,12 +129,12 @@ NSString * const mobile_safari_string = @"com.apple.mobilesafari";
                      [availablePrices addObject:price];
                  }
              }
-             completion(availablePrices, error);
+             completion(availablePrices, response, error);
          }
          else
          {
              NSLog(@"Error %@", error);
-             completion(nil, error);
+             completion(nil, response, error);
          }
      }];
 }
@@ -157,12 +157,12 @@ NSString * const mobile_safari_string = @"com.apple.mobilesafari";
                  UberTime *time = [[UberTime alloc] initWithDictionary:[times objectAtIndex:i]];
                  [availableTimes addObject:time];
              }
-             completion(availableTimes, error);
+             completion(availableTimes, response, error);
          }
          else
          {
              NSLog(@"Error %@", error);
-             completion(nil, error);
+             completion(nil, response, error);
          }
      }];
 }
@@ -179,11 +179,11 @@ NSString * const mobile_safari_string = @"com.apple.mobilesafari";
          if(!error)
          {
              UberPromotion *promotion = [[UberPromotion alloc] initWithDictionary:promotionDictionary];
-             handler(promotion, error);
+             handler(promotion, response, error);
          }
          else
          {
-             handler(nil, error);
+             handler(nil, response, error);
          }
      }];
 }
@@ -212,11 +212,11 @@ NSString * const mobile_safari_string = @"com.apple.mobilesafari";
                  [activity setCount:count];
                  [availableActivity addObject:activity];
              }
-             completion(availableActivity, error);
+             completion(availableActivity, response, error);
          }
          else
          {
-             completion(nil, error);
+             completion(nil, response, error);
          }
      }];
 }
@@ -233,11 +233,11 @@ NSString * const mobile_safari_string = @"com.apple.mobilesafari";
          if(profileDictionary)
          {
              UberProfile *profile = [[UberProfile alloc] initWithDictionary:profileDictionary];
-             handler(profile, error);
+             handler(profile, response, error);
          }
          else
          {
-             handler(nil, error);
+             handler(nil, response, error);
          }
      }];
 }

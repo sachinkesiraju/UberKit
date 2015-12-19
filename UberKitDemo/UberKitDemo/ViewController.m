@@ -37,7 +37,7 @@
     CLLocation *location = [[CLLocation alloc] initWithLatitude:37.7833 longitude:-122.4167];
     CLLocation *endLocation = [[CLLocation alloc] initWithLatitude:37.9 longitude:-122.43];
     
-    [uberKit getProductsForLocation:location withCompletionHandler:^(NSArray *products, NSError *error)
+    [uberKit getProductsForLocation:location withCompletionHandler:^(NSArray *products, NSURLResponse *response, NSError *error)
      {
          if(!error)
          {
@@ -50,7 +50,7 @@
          }
      }];
     
-    [uberKit getTimeForProductArrivalWithLocation:location withCompletionHandler:^(NSArray *times, NSError *error)
+    [uberKit getTimeForProductArrivalWithLocation:location withCompletionHandler:^(NSArray *times, NSURLResponse *response, NSError *error)
      {
          if(!error)
          {
@@ -63,7 +63,7 @@
          }
      }];
     
-    [uberKit getPriceForTripWithStartLocation:location endLocation:endLocation  withCompletionHandler:^(NSArray *prices, NSError *error)
+    [uberKit getPriceForTripWithStartLocation:location endLocation:endLocation  withCompletionHandler:^(NSArray *prices, NSURLResponse *response, NSError *error)
      {
          if(!error)
          {
@@ -76,7 +76,7 @@
          }
      }];
     
-    [uberKit getPromotionForLocation:location endLocation:endLocation withCompletionHandler:^(UberPromotion *promotion, NSError *error)
+    [uberKit getPromotionForLocation:location endLocation:endLocation withCompletionHandler:^(UberPromotion *promotion, NSURLResponse *response, NSError *error)
      {
          if(!error)
          {
@@ -106,7 +106,7 @@
     NSLog(@"Received access token %@", accessToken);
     if(accessToken)
     {
-        [uberKit getUserActivityWithCompletionHandler:^(NSArray *activities, NSError *error)
+        [uberKit getUserActivityWithCompletionHandler:^(NSArray *activities, NSURLResponse *response, NSError *error)
          {
              if(!error)
              {
@@ -120,7 +120,7 @@
              }
          }];
         
-        [uberKit getUserProfileWithCompletionHandler:^(UberProfile *profile, NSError *error)
+        [uberKit getUserProfileWithCompletionHandler:^(UberProfile *profile, NSURLResponse *response, NSError *error)
          {
              if(!error)
              {

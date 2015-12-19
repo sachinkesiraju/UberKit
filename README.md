@@ -31,7 +31,7 @@ Alternatively, you can set your server token to a shared instance of UberKit as 
 To get all products available from a particular location
 
 ```objc
- [uberKit getProductsForLocation:location withCompletionHandler:^(NSArray *products, NSError *error)
+ [uberKit getProductsForLocation:location withCompletionHandler:^(NSArray *products, NSURLResponse *response, NSError *error)
      {
          if(!error)
          {
@@ -46,7 +46,7 @@ To get all products available from a particular location
 
 To get the time for arrival of a product to a particular location
 ```objc
-[uberKit getTimeForProductArrivalWithLocation:location withCompletionHandler:^(NSArray *times, NSError *error)
+[uberKit getTimeForProductArrivalWithLocation:location withCompletionHandler:^(NSArray *times, NSURLResponse *response, NSError *error)
      {
          if(!error)
          {
@@ -61,7 +61,7 @@ To get the time for arrival of a product to a particular location
 
 To get the price for a trip between two locations
 ```objc
-[uberKit getPriceForTripWithStartLocation:location endLocation:endLocation  withCompletionHandler:^(NSArray *prices,  NSError *error)
+[uberKit getPriceForTripWithStartLocation:location endLocation:endLocation  withCompletionHandler:^(NSArray *prices, NSURLResponse *response, NSError *error)
      {
          if(!error)
          {
@@ -76,7 +76,7 @@ To get the price for a trip between two locations
 
 To get the available promotion for a trip between two locations
 ```objc
-[uberKit getPromotionForLocation:location endLocation:endLocation withCompletionHandler:^(UberPromotion *promotion,  NSError *error)
+[uberKit getPromotionForLocation:location endLocation:endLocation withCompletionHandler:^(UberPromotion *promotion, NSURLResponse *response,  NSError *error)
      {
         if(!error)
         {
@@ -138,7 +138,7 @@ Once you've successfully retrieved an access token, you can then make the follow
 
 To get all activity by the user
 ```objc
-[uberKit getUserActivityWithCompletionHandler:^(NSArray *activities, NSError *error)
+[uberKit getUserActivityWithCompletionHandler:^(NSArray *activities, NSURLResponse *response, NSError *error)
          {
              if(!error)
              {
@@ -153,7 +153,7 @@ To get all activity by the user
 
 To get the profile of the user
 ```objc
-[uberKit getUserProfileWithCompletionHandler:^(UberProfile *profile, NSError *error)
+[uberKit getUserProfileWithCompletionHandler:^(UberProfile *profile, NSURLResponse *response, NSError *error)
          {
              if(!error)
              {
